@@ -79,21 +79,22 @@
 
 
 
-<meta name="description" content="在做智障游戏欢乐鸡夫人的时候，研究了下 Unity 里 AudioSource 的播放，怎么样才能把这玩意儿搞得让自己舒服。  实现功能每一只鸡会有 2 种放屁声，如果戳到的时候是 bonus click，则放 2 号屁，否则就会放 1 号屁。">
+<meta name="description" content="在做智障游戏欢乐鸡夫人的时候，使用了 Unity 动画状态机 State Machine Animator, 尝试了下 Unity 的 AudioSource 的播放，试图把这玩意儿搞得让自己舒服。">
 <meta name="keywords" content="Unity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unity 动画状态机中的音频播放尝试">
 <meta property="og:url" content="http://jyfmidi.com/2018/12/18/happy-mrs-chicken/index.html">
 <meta property="og:site_name" content="心灵的国王">
-<meta property="og:description" content="在做智障游戏欢乐鸡夫人的时候，研究了下 Unity 里 AudioSource 的播放，怎么样才能把这玩意儿搞得让自己舒服。  实现功能每一只鸡会有 2 种放屁声，如果戳到的时候是 bonus click，则放 2 号屁，否则就会放 1 号屁。">
+<meta property="og:description" content="在做智障游戏欢乐鸡夫人的时候，使用了 Unity 动画状态机 State Machine Animator, 尝试了下 Unity 的 AudioSource 的播放，试图把这玩意儿搞得让自己舒服。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://jyfmidi.com/2018/12/18/happy-mrs-chicken/state-machine-animator.png">
 <meta property="og:image" content="http://jyfmidi.com/2018/12/18/happy-mrs-chicken/state-machine-animator.png">
 <meta property="og:image" content="http://jyfmidi.com/2018/12/18/happy-mrs-chicken/fart-inspector.png">
 <meta property="og:image" content="http://jyfmidi.com/2018/12/18/happy-mrs-chicken/add-behaviour.png">
-<meta property="og:updated_time" content="2018-12-18T14:54:14.922Z">
+<meta property="og:updated_time" content="2018-12-18T14:57:41.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity 动画状态机中的音频播放尝试">
-<meta name="twitter:description" content="在做智障游戏欢乐鸡夫人的时候，研究了下 Unity 里 AudioSource 的播放，怎么样才能把这玩意儿搞得让自己舒服。  实现功能每一只鸡会有 2 种放屁声，如果戳到的时候是 bonus click，则放 2 号屁，否则就会放 1 号屁。">
+<meta name="twitter:description" content="在做智障游戏欢乐鸡夫人的时候，使用了 Unity 动画状态机 State Machine Animator, 尝试了下 Unity 的 AudioSource 的播放，试图把这玩意儿搞得让自己舒服。">
 <meta name="twitter:image" content="http://jyfmidi.com/2018/12/18/happy-mrs-chicken/state-machine-animator.png">
 
 
@@ -304,10 +305,10 @@
       
 
       
-        <p>在做智障游戏<strong>欢乐鸡夫人</strong>的时候，研究了下 Unity 里 AudioSource 的播放，怎么样才能把这玩意儿搞得让自己舒服。</p>
+        <p>在做智障游戏<strong>欢乐鸡夫人</strong>的时候，使用了 Unity 动画状态机 State Machine Animator, 尝试了下 Unity 的 AudioSource 的播放，试图把这玩意儿搞得让自己舒服。</p>
 <img src="/2018/12/18/happy-mrs-chicken/state-machine-animator.png">
+<p><img src="state-machine-animator.png" alt=""><br><a id="more"></a></p>
 <h2 id="实现功能"><a href="#实现功能" class="headerlink" title="实现功能"></a>实现功能</h2><p>每一只鸡会有 2 种放屁声，如果戳到的时候是 bonus click，则放 2 号屁，否则就会放 1 号屁。</p>
-<a id="more"></a>
 <h2 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h2><ul>
 <li>做第一版的时候为了速撸，没有考虑别的，直接写在控制脚本里，挂在每一只鸡的 Prefab 上，然后脚本里不同部分控制代码（走路、跳跃、放屁）搅合在了一起，非常令人不快。</li>
 <li>然后发现 Unity 5 之后出了个 State Machine Behaviour，可以在挂在 Animator 状态上，每次状态转换的时候，自己执行，不用继承 MonoBehaviour，于是把声音控制重构为状态机控制器。</li>
