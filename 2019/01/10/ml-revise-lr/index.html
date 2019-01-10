@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="心灵的国王">
 <meta property="og:description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-10T20:23:50.294Z">
+<meta property="og:updated_time" content="2019-01-10T20:28:55.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习期末复习 3：线性回归">
 <meta name="twitter:description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
@@ -312,15 +312,15 @@
       
         <p>然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……</p>
 <a id="more"></a>
-<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>手上有数据 $D={(x_1,y_1),\ldots,(x_n,y_n)},其中 x_i\in \mathcal{R}^d, y_i\in \mathcal{R}$</p>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>手上有数据 $D=((x_1,y_1),\ldots,(x_n,y_n)),其中 x_i\in \mathbb{R}^d, y_i\in \mathbb{R}$</p>
+<p>然后我们需要获取一个 $d$ 维到 1 维的映射 $f:\mathbb{R}^d\rightarrow \mathbb{R}$，能够根据新的 $x$ 预测出 $y$</p>
 <h2 id="基函数-Basis-Function"><a href="#基函数-Basis-Function" class="headerlink" title="基函数 Basis Function"></a>基函数 Basis Function</h2><p>线性回归说是线性，其实回归出来不一定是线形，这就是基函数的作用</p>
 <p>一个基本的线形函数模型是</p>
 <p>$$f(x)=w^Tx=\sum\limits_{i=1}^{d}w_ix(i)$$</p>
 <p>其中 $x,w\in\mathbb{R}^d,y\in\mathbb{R}$</p>
 <p>而如果把其中的 $x$ 用基函数 $\phi(x)$ 代替，就变成了</p>
 <p>$$f(x)=w^T\phi(x)=\sum\limits_{i=1}^{d}w_i\phi_i(x)$$</p>
-<p>其中$w\in \mathbb{R}^m$，而 $\phi$ 是一个 $d$ 维到 $m$ 维的映射 $\phi:\mathbb{R}^d\rightarrow\mathbb{R}^m$，也即</p>
-<p>$$\phi(x)=(\phi_1(x),\ldots,\phi_m(x))$$</p>
+<p>其中$w\in \mathbb{R}^m$，而 $\phi$ 是一个 $d$ 维到 $m$ 维的映射 $\phi:\mathbb{R}^d\rightarrow\mathbb{R}^m$，也即 $\phi(x)=(\phi_1(x),\ldots,\phi_m(x))$</p>
 <p>可以看到，对于 $f$ 和 $\phi$，它们之间的映射的确是线性的，也就是 $w$ 是线性的，这也就是线性回归得名的原因，而 $\phi$ 本身，完全可以是非线性的。使用基函数，就可以表征更广泛的映射关系，比如傅立叶变换、小波分析等，就是以波形函数作为基函数的例子</p>
 <h2 id="获取模型"><a href="#获取模型" class="headerlink" title="获取模型"></a>获取模型</h2><p>那我们当然要先学习出模型，再使用模型进行预测</p>
 <ol>
