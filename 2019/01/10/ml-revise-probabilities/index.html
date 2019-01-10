@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Photoshop,">
+  <meta name="keywords" content="学习,">
 
 
 
@@ -79,26 +79,18 @@
 
 
 
-<meta name="description" content="阿金此时坐标英国，突然国内需要我寄一张签了名的身份证复印件到某个地方，哇我怎么寄哦。。。要家人朋友帮我寄么，签名怎么办呢。。。那不如换个思路，直接 P 一个发给朋友帮我寄出去不就好了。那要做的就很简单了：  获取证件图片 随便找个纸钱报个名 把签名提取出来放到证件特定位置  其实以前做过类似的事情，不过第三步是利用各种色阶魔棒阈值操作，正经抠图抠出签名，不过效果很假只能娱乐。最近正好在学习 Pho">
-<meta name="keywords" content="Photoshop">
+<meta name="description" content="反正感觉 Carl 这门贝叶斯玄学课的核心想法就是，我们所在的世界都是充满不确定性的，并不存在一个真相。而传统的数学是为了获得唯一真相而服务的，所以它就没办法表达机器学习要解决的问题。为了表达这些不确定性，就需要用到概率论。">
+<meta name="keywords" content="学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PS 混合模式“变暗”应用实例：制作电子签名">
-<meta property="og:url" content="http://jyfmidi.com/2019/01/09/ps-signature/index.html">
+<meta property="og:title" content="机器学习期末总结：概率">
+<meta property="og:url" content="http://jyfmidi.com/2019/01/10/ml-revise-probabilities/index.html">
 <meta property="og:site_name" content="心灵的国王">
-<meta property="og:description" content="阿金此时坐标英国，突然国内需要我寄一张签了名的身份证复印件到某个地方，哇我怎么寄哦。。。要家人朋友帮我寄么，签名怎么办呢。。。那不如换个思路，直接 P 一个发给朋友帮我寄出去不就好了。那要做的就很简单了：  获取证件图片 随便找个纸钱报个名 把签名提取出来放到证件特定位置  其实以前做过类似的事情，不过第三步是利用各种色阶魔棒阈值操作，正经抠图抠出签名，不过效果很假只能娱乐。最近正好在学习 Pho">
+<meta property="og:description" content="反正感觉 Carl 这门贝叶斯玄学课的核心想法就是，我们所在的世界都是充满不确定性的，并不存在一个真相。而传统的数学是为了获得唯一真相而服务的，所以它就没办法表达机器学习要解决的问题。为了表达这些不确定性，就需要用到概率论。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://jyfmidi.com/2019/01/09/ps-signature/file.jpeg">
-<meta property="og:image" content="http://jyfmidi.com/2019/01/09/ps-signature/sign.jpeg">
-<meta property="og:image" content="http://jyfmidi.com/2019/01/09/ps-signature/1.png">
-<meta property="og:image" content="http://jyfmidi.com/2019/01/09/ps-signature/2.png">
-<meta property="og:image" content="http://jyfmidi.com/2019/01/09/ps-signature/3.png">
-<meta property="og:image" content="http://jyfmidi.com/2019/01/09/ps-signature/4.png">
-<meta property="og:image" content="http://jyfmidi.com/2019/01/09/ps-signature/5.png">
-<meta property="og:updated_time" content="2019-01-09T23:01:57.463Z">
+<meta property="og:updated_time" content="2019-01-10T12:42:32.311Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PS 混合模式“变暗”应用实例：制作电子签名">
-<meta name="twitter:description" content="阿金此时坐标英国，突然国内需要我寄一张签了名的身份证复印件到某个地方，哇我怎么寄哦。。。要家人朋友帮我寄么，签名怎么办呢。。。那不如换个思路，直接 P 一个发给朋友帮我寄出去不就好了。那要做的就很简单了：  获取证件图片 随便找个纸钱报个名 把签名提取出来放到证件特定位置  其实以前做过类似的事情，不过第三步是利用各种色阶魔棒阈值操作，正经抠图抠出签名，不过效果很假只能娱乐。最近正好在学习 Pho">
-<meta name="twitter:image" content="http://jyfmidi.com/2019/01/09/ps-signature/file.jpeg">
+<meta name="twitter:title" content="机器学习期末总结：概率">
+<meta name="twitter:description" content="反正感觉 Carl 这门贝叶斯玄学课的核心想法就是，我们所在的世界都是充满不确定性的，并不存在一个真相。而传统的数学是为了获得唯一真相而服务的，所以它就没办法表达机器学习要解决的问题。为了表达这些不确定性，就需要用到概率论。">
 
 
 
@@ -128,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jyfmidi.com/2019/01/09/ps-signature/">
+  <link rel="canonical" href="http://jyfmidi.com/2019/01/10/ml-revise-probabilities/">
 
 
 
 
 
-  <title>PS 混合模式“变暗”应用实例：制作电子签名 | 心灵的国王</title>
+  <title>机器学习期末总结：概率 | 心灵的国王</title>
   
 
 
@@ -241,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://jyfmidi.com/2019/01/09/ps-signature/">
+    <link itemprop="mainEntityOfPage" href="http://jyfmidi.com/2019/01/10/ml-revise-probabilities/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jyfmidi">
@@ -258,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PS 混合模式“变暗”应用实例：制作电子签名</h1>
+          <h1 class="post-title" itemprop="name headline">机器学习期末总结：概率</h1>
         
 
         <div class="post-meta">
@@ -270,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-09T22:01:34+00:00">
-                2019-01-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T11:55:50+00:00">
+                2019-01-10
               </time>
             
 
@@ -308,35 +300,15 @@
       
 
       
-        <p>阿金此时坐标英国，突然国内需要我寄一张<strong>签了名的身份证复印件</strong>到某个地方，哇我怎么寄哦。。。要家人朋友帮我寄么，签名怎么办呢。。。那不如换个思路，直接 P 一个发给朋友帮我寄出去不就好了。那要做的就很简单了：</p>
-<ol>
-<li>获取证件图片</li>
-<li>随便找个纸钱报个名</li>
-<li>把签名提取出来放到证件特定位置</li>
-</ol>
-<p>其实以前做过类似的事情，不过第三步是利用各种色阶魔棒阈值操作，正经抠图抠出签名，不过效果很假只能娱乐。最近正好在学习 Photoshop 的<strong>混合模式（blend mode）</strong>，发现其实很多时候，正确使用混合模式可以又快又好地完成任务。所以这次就使用了其中的“<strong>变暗（Darken）</strong>”模式，一下子就做好了～<br><a id="more"></a></p>
-<p>那首先获取一下要签名的文件，这里我举例就随便找个文件</p>
-<div style="width: 30%; margin: auto"><img src="file.jpeg" alt=""><br></div>
-
-<p>然后再随便签个名</p>
-<div style="width: 30%; margin: auto"><br><img src="sign.jpeg" alt=""><br></div>
-
-<p>然后首先把这些都拖到 ps 里去，我用的 CC 2018，拖进去自动是智能对象，所以要<strong>删格化</strong>一下，把处理对象变成像素</p>
-<div style="width: 60%; margin: auto"><br><img src="1.png" alt=""><br></div>
-
-<p>然后可以看到在混合模式设置为“正常”的时候，两个图层没有任何交互。传统的抠图方法就是把签名图层的浅色背景想尽办法去掉，只保留黑色部分。而此时，其实只要把这里的混合选项改成“<strong>变暗</strong>”</p>
-<div style="width: 60%; margin: auto"><br><img src="2.png" alt=""><br></div>
-
-<p>看，背景就立马看不见了。这是因为，“变暗”混合模式的规则是，两个图层的每一个像素，谁暗就保留谁。所以在签名层中，深色的笔迹会被保留，而比文件层浅的背景会被文件层内容代替</p>
-<div style="width: 60%; margin: auto"><br><img src="3.png" alt=""><br></div>
-
-<p>旋转一下放到合适的位置，此时发现稍微浅了一点</p>
-<div style="width: 60%; margin: auto"><br><img src="4.png" alt=""><br></div>
-
-<p>因此使用 ctrl/cmd+l 打开<strong>色阶</strong>，稍微调整一下中间调和高光部分，让笔迹平滑</p>
-<div style="width: 60%; margin: auto"><br><img src="5.png" alt=""><br></div>
-
-<p>完成！超方便的！</p>
+        <p>反正感觉 Carl 这门贝叶斯玄学课的核心想法就是，我们所在的世界都是充满不确定性的，并不存在一个真相。而传统的数学是为了获得唯一真相而服务的，所以它就没办法表达机器学习要解决的问题。为了表达这些不确定性，就需要用到概率论。</p>
+<a id="more"></a>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="随机变量-Random-Variable"><a href="#随机变量-Random-Variable" class="headerlink" title="随机变量 Random Variable"></a>随机变量 Random Variable</h3><p>随机变量就是一些随机现象的结果。</p>
+<p>随机变量没法用某个特定的值表达，而是用一个概率分布来描述。这个概率分布就描述了，这个随机变量呈现为每一个值分别是多大的概率。</p>
+<p>而一个模型中存在不确定性，我们就把这些不确定性用随机变量表征出来。而因此，系统就变成了随机过程。</p>
+<h3 id="贝叶斯概率-Bayesian-Probabilities"><a href="#贝叶斯概率-Bayesian-Probabilities" class="headerlink" title="贝叶斯概率 Bayesian Probabilities"></a>贝叶斯概率 Bayesian Probabilities</h3><p>传统的概率论视角是把概率看作事件出现的频率，也就是<strong>频繁概率 Frequentist</strong>，这种方法在机器学习中不使用，因为当我们还没有观测、或者极小概率事件的时候，频率就根本不存在。</p>
+<p>而在贝叶斯概率的视角中，概率的意义是变量的<strong>置信 Belief</strong>。这就很合理，因为即使没有观测到，我也可以相信某个事件有概率出现。从这个角度切入，就可以给贝叶斯公式中的每一个组分赋予直观的意义，比如<strong>后验 Posterior</strong>、<strong>似然 Likelihood</strong>、<strong>先验 Prior</strong>、<strong>证据 Evidence</strong>、<strong>边缘似然 Marginal Likelihood</strong> 等</p>
+<h3 id="模型-Models"><a href="#模型-Models" class="headerlink" title="模型 Models"></a>模型 Models</h3><p>这里的模型主要指的是把两个事物联系起来的一种事物。在充满随机性和不确定性的机器学习中，就是把<strong>一个随机变量的分布</strong>和<strong>用来表达这个分布的参数，同时也是另一个随机变量</strong>联系起来的一种<strong>映射关系</strong></p>
+<h3 id="概率质量-密度函数-Probability-Mass-Density-Function"><a href="#概率质量-密度函数-Probability-Mass-Density-Function" class="headerlink" title="概率质量/密度函数 Probability Mass/Density Function"></a>概率质量/密度函数 Probability Mass/Density Function</h3><p>如果随机变量是离散的，就叫 PMF；如果是连续的，就叫 PDF。是用来表征随机变量的结果出现在每一个点的可能性的函数<br>$$<br>p(x)\geq 0, \int^{\inf}_{-\inf} p(x)dx = 1<br>$$</p>
 
       
     </div>
@@ -354,7 +326,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Photoshop/" rel="tag"># Photoshop</a>
+            <a href="/tags/学习/" rel="tag"># 学习</a>
           
         </div>
       
@@ -367,8 +339,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/18/happy-mrs-chicken/" rel="next" title="Unity 动画状态机中的音频播放尝试">
-                <i class="fa fa-chevron-left"></i> Unity 动画状态机中的音频播放尝试
+              <a href="/2019/01/10/cook-rainbow-porridge/" rel="next" title="留学省钱料理：纯素有机燕麦五色粥">
+                <i class="fa fa-chevron-left"></i> 留学省钱料理：纯素有机燕麦五色粥
               </a>
             
           </div>
@@ -376,10 +348,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/10/cook-rainbow-porridge/" rel="prev" title="留学省钱料理：纯素有机燕麦五色粥">
-                留学省钱料理：纯素有机燕麦五色粥 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -431,8 +399,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -483,6 +460,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#随机变量-Random-Variable"><span class="nav-number">1.1.</span> <span class="nav-text">随机变量 Random Variable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贝叶斯概率-Bayesian-Probabilities"><span class="nav-number">1.2.</span> <span class="nav-text">贝叶斯概率 Bayesian Probabilities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型-Models"><span class="nav-number">1.3.</span> <span class="nav-text">模型 Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概率质量-密度函数-Probability-Mass-Density-Function"><span class="nav-number">1.4.</span> <span class="nav-text">概率质量/密度函数 Probability Mass/Density Function</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
