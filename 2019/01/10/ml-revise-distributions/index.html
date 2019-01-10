@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="心灵的国王">
 <meta property="og:description" content="有了概率作为表达的工具，接下来就要关注概率组成的分布 Distributions。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正别的分布打个招呼就好，好好学习高斯分布就好了，高斯分布最棒了！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-10T16:18:08.927Z">
+<meta property="og:updated_time" content="2019-01-10T16:27:02.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习期末复习 2：分布">
 <meta name="twitter:description" content="有了概率作为表达的工具，接下来就要关注概率组成的分布 Distributions。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正别的分布打个招呼就好，好好学习高斯分布就好了，高斯分布最棒了！">
@@ -306,7 +306,7 @@
 <p>在似然中，会有一些参数控制这个生成的过程，这些就是我们需要学习出来的参数。比如一条直线 $y_i=\mathbf{w}^T\mathbf{x}_i$, 我们的似然就是 $y$ 的一个分布，这个分布由参数 $\mathbf{w}$ 和 $\mathbf{x}$ 所决定。</p>
 <p>那现在就需要假设一个 $\mathbf{w}$，把这个假设作为先验，然后就能基于贝叶斯规则不断更新我们的假设，也就是获得后验，这就是学习的过程。</p>
 <p>而如果我们假设的先验分布，能够让后验分布和先验分布的表达式在数学形式上相同，那么我们假设的这个先验就叫做共轭先验。这超方便的，因为一旦使用共轭性质，我们就不需要管贝叶斯公式右边分母了，也不需要强行计算后验了。因为已经有既定的形式了，只需要套公式获取后验的参数就可以了。</p>
-<h2 id="高斯分布-the-Gaussian-Distribution"><a href="#高斯分布-the-Gaussian-Distribution" class="headerlink" title="高斯分布 the Gaussian Distribution"></a>高斯分布 the Gaussian Distribution</h2><p>使用均值 $\mu$ 和协方差 $\Sigma$ 表示的一般形式：<br>$$p(x|\mu,\Sigma)=\frac{1}{(2\pi)^{\frac{D}{2}}\abs{\Sigma}^{\frac{1}{2}}}e^{-\frac{1}{2}(\mathbf{x}-\mu)^T\Sigma^{-1}(\mathbf{x}-\mu)}$$<br>最常用的二元高斯分布<br>$$p(x_1,x_2) = N<br>\left(<br>\begin{matrix}<br>\mu_1 \\<br>\mu_2 \\<br>\end{matrix}<br>,<br>\left[<br>\begin{matrix}<br>\sigma_{11} &amp; \sigma_{12} \\<br>\sigma_{21} &amp; \sigma_{22}\\<br>\end{matrix}<br>\right]<br>\right)$$</p>
+<h2 id="高斯分布-the-Gaussian-Distribution"><a href="#高斯分布-the-Gaussian-Distribution" class="headerlink" title="高斯分布 the Gaussian Distribution"></a>高斯分布 the Gaussian Distribution</h2><p>使用均值 $\mu$ 和协方差 $\Sigma$ 表示的<strong>多元高斯分布 Multivariate Gaussian</strong> 一般形式：<br>$$p(x|\mu,\Sigma)=\frac{1}{(2\pi)^{\frac{D}{2}}|\Sigma|^{\frac{1}{2}}}e^{-\frac{1}{2}(\mathbf{x}-\mu)^T\Sigma^{-1}(\mathbf{x}-\mu)}$$<br>最常用的二元高斯分布<br>$$p(x_1,x_2) = \mathcal{N}<br>\left(<br>\begin{matrix}<br>\mu_1 \\<br>\mu_2 \\<br>\end{matrix}<br>,<br>\left[<br>\begin{matrix}<br>\sigma_{11} &amp; \sigma_{12} \\<br>\sigma_{21} &amp; \sigma_{22}\\<br>\end{matrix}<br>\right]<br>\right)$$<br>高斯边缘分布也是经常会用到的<br>$$p(x_2)=\int p(x_1,x_2)dx_1 = \mathcal{N}(\mu_2,\sigma_{22})$$<br>还有高斯条件分布<br>$$p(x_1|x_2)=\frac{p(x_1,x_2)}{p(x_2)}=\mathcal{N}(\mu_1+\sigma_{21}\sigma_{22}^{-1}(x_2-\mu_2),\sigma_{11}-\sigma_{12}\sigma_{22}^{-1}\sigma_{21})$$</p>
 <h2 id="中心极限定理-Central-Limit-Theorem"><a href="#中心极限定理-Central-Limit-Theorem" class="headerlink" title="中心极限定理 Central Limit Theorem"></a>中心极限定理 Central Limit Theorem</h2><p>对于任何分布，只要是基于<strong>独立同分布（i.i.d.）</strong>采样的，这些采样值的和与均值都会遵循高斯分布。这就是高斯分布惹人爱的原因了，因为即使不知道手上的数据是从什么分布中来的，但是我可以假设这些都是基于 i.i.d. 采样的均值，那就可以用高斯分布来玩了。</p>
 <h2 id="高斯相似-Gaussian-Identities"><a href="#高斯相似-Gaussian-Identities" class="headerlink" title="高斯相似 Gaussian Identities"></a>高斯相似 Gaussian Identities</h2>
       
