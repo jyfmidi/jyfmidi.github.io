@@ -82,14 +82,14 @@
 <meta name="description" content="反正感觉 Carl 这门贝叶斯玄学课的核心想法就是，我们所在的世界都是充满不确定性的，并不存在一个真相。而传统的数学是为了获得唯一真相而服务的，所以它就没办法表达机器学习要解决的问题。为了表达这些不确定性，就需要用到概率论。">
 <meta name="keywords" content="学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习期末总结：概率">
+<meta property="og:title" content="机器学习期末总结 1：概率">
 <meta property="og:url" content="http://jyfmidi.com/2019/01/10/ml-revise-probabilities/index.html">
 <meta property="og:site_name" content="心灵的国王">
 <meta property="og:description" content="反正感觉 Carl 这门贝叶斯玄学课的核心想法就是，我们所在的世界都是充满不确定性的，并不存在一个真相。而传统的数学是为了获得唯一真相而服务的，所以它就没办法表达机器学习要解决的问题。为了表达这些不确定性，就需要用到概率论。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-10T12:42:32.311Z">
+<meta property="og:updated_time" content="2019-01-10T13:05:36.265Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习期末总结：概率">
+<meta name="twitter:title" content="机器学习期末总结 1：概率">
 <meta name="twitter:description" content="反正感觉 Carl 这门贝叶斯玄学课的核心想法就是，我们所在的世界都是充满不确定性的，并不存在一个真相。而传统的数学是为了获得唯一真相而服务的，所以它就没办法表达机器学习要解决的问题。为了表达这些不确定性，就需要用到概率论。">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>机器学习期末总结：概率 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>机器学习期末总结 1：概率 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">机器学习期末总结：概率</h1>
+          <h1 class="post-title" itemprop="name headline">机器学习期末总结 1：概率</h1>
         
 
         <div class="post-meta">
@@ -308,7 +308,7 @@
 <h3 id="贝叶斯概率-Bayesian-Probabilities"><a href="#贝叶斯概率-Bayesian-Probabilities" class="headerlink" title="贝叶斯概率 Bayesian Probabilities"></a>贝叶斯概率 Bayesian Probabilities</h3><p>传统的概率论视角是把概率看作事件出现的频率，也就是<strong>频繁概率 Frequentist</strong>，这种方法在机器学习中不使用，因为当我们还没有观测、或者极小概率事件的时候，频率就根本不存在。</p>
 <p>而在贝叶斯概率的视角中，概率的意义是变量的<strong>置信 Belief</strong>。这就很合理，因为即使没有观测到，我也可以相信某个事件有概率出现。从这个角度切入，就可以给贝叶斯公式中的每一个组分赋予直观的意义，比如<strong>后验 Posterior</strong>、<strong>似然 Likelihood</strong>、<strong>先验 Prior</strong>、<strong>证据 Evidence</strong>、<strong>边缘似然 Marginal Likelihood</strong> 等</p>
 <h3 id="模型-Models"><a href="#模型-Models" class="headerlink" title="模型 Models"></a>模型 Models</h3><p>这里的模型主要指的是把两个事物联系起来的一种事物。在充满随机性和不确定性的机器学习中，就是把<strong>一个随机变量的分布</strong>和<strong>用来表达这个分布的参数，同时也是另一个随机变量</strong>联系起来的一种<strong>映射关系</strong></p>
-<h3 id="概率质量-密度函数-Probability-Mass-Density-Function"><a href="#概率质量-密度函数-Probability-Mass-Density-Function" class="headerlink" title="概率质量/密度函数 Probability Mass/Density Function"></a>概率质量/密度函数 Probability Mass/Density Function</h3><p>如果随机变量是离散的，就叫 PMF；如果是连续的，就叫 PDF。是用来表征随机变量的结果出现在每一个点的可能性的函数<br>$$<br>p(x)\geq 0, \int^{\inf}_{-\inf} p(x)dx = 1<br>$$</p>
+<h3 id="概率质量-密度函数-Probability-Mass-Density-Function"><a href="#概率质量-密度函数-Probability-Mass-Density-Function" class="headerlink" title="概率质量/密度函数 Probability Mass/Density Function"></a>概率质量/密度函数 Probability Mass/Density Function</h3><p>如果随机变量是离散的，就叫 PMF；如果是连续的，就叫 PDF。是用来表征随机变量的结果出现在每一个点的可能性的函数<br>$$<br>p(x)\geq 0, \int^{\infty} _{ -\infty} p(x)dx = 1<br>$$</p>
 
       
     </div>
