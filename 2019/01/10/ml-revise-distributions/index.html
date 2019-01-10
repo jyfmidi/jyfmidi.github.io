@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="学习,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="心灵的国王">
-<meta property="og:url" content="http://jyfmidi.com/tags/Unity/index.html">
+<meta name="description" content="有了概率作为表达的工具，接下来就要关注概率组成的分布 Distributions。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正别的分布打个招呼就好，好好学习高斯分布就好了，高斯分布最棒了！">
+<meta name="keywords" content="学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习期末复习 2：分布">
+<meta property="og:url" content="http://jyfmidi.com/2019/01/10/ml-revise-distributions/index.html">
 <meta property="og:site_name" content="心灵的国王">
+<meta property="og:description" content="有了概率作为表达的工具，接下来就要关注概率组成的分布 Distributions。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正别的分布打个招呼就好，好好学习高斯分布就好了，高斯分布最棒了！">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-10T15:02:40.600Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="心灵的国王">
+<meta name="twitter:title" content="机器学习期末复习 2：分布">
+<meta name="twitter:description" content="有了概率作为表达的工具，接下来就要关注概率组成的分布 Distributions。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正别的分布打个招呼就好，好好学习高斯分布就好了，高斯分布最棒了！">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://jyfmidi.com/tags/Unity/">
+  <link rel="canonical" href="http://jyfmidi.com/2019/01/10/ml-revise-distributions/">
 
 
 
 
 
-  <title>标签: Unity | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>机器学习期末复习 2：分布 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -140,7 +145,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -214,52 +219,152 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Unity<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://jyfmidi.com/2019/01/10/ml-revise-distributions/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jyfmidi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心灵的国王">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/06/18/happy-mrs-chicken/" itemprop="url">
-              
-                <span itemprop="name">Unity 动画状态机中的音频播放尝试</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">机器学习期末复习 2：分布</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-06-18T14:42:33+01:00" content="2018-06-18">
-          06-18
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T14:38:26+00:00">
+                2019-01-10
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <p>有了概率作为表达的工具，接下来就要关注概率组成的<strong>分布 Distributions</strong>。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正别的分布打个招呼就好，好好学习高斯分布就好了，高斯分布最棒了！</p>
+<a id="more"></a>
+<h2 id="主要概念"><a href="#主要概念" class="headerlink" title="主要概念"></a>主要概念</h2><h3 id="共轭先验-Conjugate-Prior"><a href="#共轭先验-Conjugate-Prior" class="headerlink" title="共轭先验 Conjugate Prior"></a>共轭先验 Conjugate Prior</h3><p>如果我们手上有了一些数据，要想设计一个模型来表征这些数据，我们就要定义一个可能会生成这些数据的过程，同时要引入在观测数据过程中产生的噪声，这就是<strong>似然 Likelihood</strong>。</p>
+<p>在似然中，会有一些参数控制这个生成的过程，这些就是我们需要学习出来的参数。比如一条直线 $y_i=\mathbf{w}^T\mathbf{x}_i$, 我们的似然就是 $y$ 的一个分布，这个分布由参数 $\mathbf{w}$ 和 $\mathbf{x}$ 所决定。</p>
+<p>那现在就需要假设一个 $\mathbf{w}$，把这个假设作为先验，然后就能基于贝叶斯规则不断更新我们的假设，也就是获得后验，这就是学习的过程。</p>
+<p>而如果我们假设的先验分布，能够让后验分布和先验分布的表达式在数学形式上相同，那么我们假设的这个先验就叫做共轭先验。这超方便的，因为一旦使用共轭性质，我们就不需要管贝叶斯公式右边分母了，也不需要强行计算后验了。因为已经有既定的形式了，只需要套公式获取后验的参数就可以了。</p>
+<h3 id="中心极限定理-Centrl-Limit-Theorem"><a href="#中心极限定理-Centrl-Limit-Theorem" class="headerlink" title="中心极限定理 Centrl Limit Theorem"></a>中心极限定理 Centrl Limit Theorem</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/10/ml-revise-probabilities/" rel="next" title="机器学习期末复习 1：概率">
+                <i class="fa fa-chevron-left"></i> 机器学习期末复习 1：概率
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -267,6 +372,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -287,8 +396,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -339,6 +457,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要概念"><span class="nav-number">1.</span> <span class="nav-text">主要概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#共轭先验-Conjugate-Prior"><span class="nav-number">1.1.</span> <span class="nav-text">共轭先验 Conjugate Prior</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中心极限定理-Centrl-Limit-Theorem"><span class="nav-number">1.2.</span> <span class="nav-text">中心极限定理 Centrl Limit Theorem</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -479,6 +613,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="心灵的国王">
 <meta property="og:description" content="反正感觉我们老师 Carl 给我们灌输的这门贝叶斯玄学课的核心想法就是，我们所在的世界都是充满不确定性的，并不存在一个真相。而传统的数学是为了获得唯一真相而服务的，所以它就没办法表达机器学习要解决的问题。为了表达这些不确定性，就需要用到概率论。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-10T14:31:15.936Z">
+<meta property="og:updated_time" content="2019-01-10T14:43:37.475Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习期末复习 1：概率">
 <meta name="twitter:description" content="反正感觉我们老师 Carl 给我们灌输的这门贝叶斯玄学课的核心想法就是，我们所在的世界都是充满不确定性的，并不存在一个真相。而传统的数学是为了获得唯一真相而服务的，所以它就没办法表达机器学习要解决的问题。为了表达这些不确定性，就需要用到概率论。">
@@ -302,13 +302,13 @@
       
         <p>反正感觉我们老师 Carl 给我们灌输的这门贝叶斯玄学课的核心想法就是，我们所在的世界都是充满不确定性的，并不存在一个真相。而传统的数学是为了获得唯一真相而服务的，所以它就没办法表达机器学习要解决的问题。为了表达这些不确定性，就需要用到概率论。</p>
 <a id="more"></a>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="随机变量-Random-Variable"><a href="#随机变量-Random-Variable" class="headerlink" title="随机变量 Random Variable"></a>随机变量 Random Variable</h3><p>随机变量就是一些随机现象的结果。</p>
+<h2 id="随机变量-Random-Variable"><a href="#随机变量-Random-Variable" class="headerlink" title="随机变量 Random Variable"></a>随机变量 Random Variable</h2><p>随机变量就是一些随机现象的结果。</p>
 <p>随机变量没法用某个特定的值表达，而是用一个概率分布来描述。这个概率分布就描述了，这个随机变量呈现为每一个值分别是多大的概率。</p>
 <p>而一个模型中存在不确定性，我们就把这些不确定性用随机变量表征出来。而因此，系统就变成了随机过程。</p>
-<h3 id="贝叶斯概率-Bayesian-Probabilities"><a href="#贝叶斯概率-Bayesian-Probabilities" class="headerlink" title="贝叶斯概率 Bayesian Probabilities"></a>贝叶斯概率 Bayesian Probabilities</h3><p>传统的概率论视角是把概率看作事件出现的频率，也就是<strong>频繁概率 Frequentist</strong>，这种方法在机器学习中不使用，因为当我们还没有观测、或者极小概率事件的时候，频率就根本不存在。</p>
+<h2 id="贝叶斯概率-Bayesian-Probabilities"><a href="#贝叶斯概率-Bayesian-Probabilities" class="headerlink" title="贝叶斯概率 Bayesian Probabilities"></a>贝叶斯概率 Bayesian Probabilities</h2><p>传统的概率论视角是把概率看作事件出现的频率，也就是<strong>频繁概率 Frequentist</strong>，这种方法在机器学习中不使用，因为当我们还没有观测、或者极小概率事件的时候，频率就根本不存在。</p>
 <p>而在贝叶斯概率的视角中，概率的意义是变量的<strong>置信 Belief</strong>。这就很合理，因为即使没有观测到，我也可以相信某个事件有概率出现。从这个角度切入，就可以给贝叶斯公式中的每一个组分赋予直观的意义，比如<strong>后验 Posterior</strong>、<strong>似然 Likelihood</strong>、<strong>先验 Prior</strong>、<strong>证据 Evidence</strong>、<strong>边缘似然 Marginal Likelihood</strong> 等</p>
-<h3 id="模型-Models"><a href="#模型-Models" class="headerlink" title="模型 Models"></a>模型 Models</h3><p>这里的模型主要指的是把两个事物联系起来的一种事物。在充满随机性和不确定性的机器学习中，就是把<strong>一个随机变量的分布</strong>和<strong>用来表达这个分布的参数，同时也是另一个随机变量</strong>联系起来的一种<strong>映射关系</strong></p>
-<h3 id="概率质量-密度函数-Probability-Mass-Density-Function"><a href="#概率质量-密度函数-Probability-Mass-Density-Function" class="headerlink" title="概率质量/密度函数 Probability Mass/Density Function"></a>概率质量/密度函数 Probability Mass/Density Function</h3><p>如果随机变量是离散的，就叫 PMF；如果是连续的，就叫 PDF。是用来表征随机变量的结果出现在每一个点的可能性的函数<br>$$p(x)\geq 0, \int^{\infty}_{-\infty} p(x)dx = 1$$</p>
+<h2 id="模型-Models"><a href="#模型-Models" class="headerlink" title="模型 Models"></a>模型 Models</h2><p>这里的模型主要指的是把两个事物联系起来的一种事物。在充满随机性和不确定性的机器学习中，就是把<strong>一个随机变量的分布</strong>和<strong>用来表达这个分布的参数，同时也是另一个随机变量</strong>联系起来的一种<strong>映射关系</strong></p>
+<h2 id="概率质量-密度函数-Probability-Mass-Density-Function"><a href="#概率质量-密度函数-Probability-Mass-Density-Function" class="headerlink" title="概率质量/密度函数 Probability Mass/Density Function"></a>概率质量/密度函数 Probability Mass/Density Function</h2><p>如果随机变量是离散的，就叫 PMF；如果是连续的，就叫 PDF。是用来表征随机变量的结果出现在每一个点的可能性的函数<br>$$p(x)\geq 0, \int^{\infty}_{-\infty} p(x)dx = 1$$</p>
 <ul>
 <li><strong>联合概率分布</strong> $p(x,y)$</li>
 <li><strong>边缘概率分布</strong> $p(x)$, $p(y)$</li>
@@ -318,9 +318,9 @@
 <li><strong>贝叶斯公式</strong> $p(\theta|D)=\frac{p(D|\theta)p(\theta)}{p(D)}$</li>
 </ul>
 <p>很灵性的一点就是 Carl 强调贝叶斯公式虽然被单独拎出来成为一个数学概念，但是他觉得这完全没有必要。因为贝叶斯公式其实就是概率相乘结果的一个表现形式，在数学上没有什么很大的意义，更重要的其实是这个公式对于概率这个概念的直观阐述，就是先验后验似然证据这些。</p>
-<h3 id="概率统计指标"><a href="#概率统计指标" class="headerlink" title="概率统计指标"></a>概率统计指标</h3><h4 id="期望-Expectations"><a href="#期望-Expectations" class="headerlink" title="期望 Expectations"></a>期望 Expectations</h4><p>变量的期望就是该变量所有可能取值在其出现频次上的加权平均。用贝叶斯视角看，就是我觉得这个变量有多大可能取某个值，然后把这里的“某个”推广到所有值，把每个“某个值”都乘上“多大可能”，然后加和<br>$$\mathbb{E}[x]=\sum_xp(x)x$$<br>在二元连续空间，就把离散的出现次数使用概率分布代替来计算<br>$$p(y) = \int p(y,x)dx = \int p(y|x)p(x)dx$$</p>
-<h4 id="方差-Variance"><a href="#方差-Variance" class="headerlink" title="方差 Variance"></a>方差 Variance</h4><p>变量值和均值相差的期望<br>$$var[x] = \mathbb{E}[(x-\mathbb{E}[x])^2]$$</p>
-<h4 id="协方差-Covariance"><a href="#协方差-Covariance" class="headerlink" title="协方差 Covariance"></a>协方差 Covariance</h4><p>两个变量与各自均值相差的乘积的期望<br>$$cov[x,y] = \mathbb{E}[(x-\mathbb{E}[x])(y-\mathbb{E}[y])]$$</p>
+<h2 id="概率统计指标"><a href="#概率统计指标" class="headerlink" title="概率统计指标"></a>概率统计指标</h2><h3 id="期望-Expectations"><a href="#期望-Expectations" class="headerlink" title="期望 Expectations"></a>期望 Expectations</h3><p>变量的期望就是该变量所有可能取值在其出现频次上的加权平均。用贝叶斯视角看，就是我觉得这个变量有多大可能取某个值，然后把这里的“某个”推广到所有值，把每个“某个值”都乘上“多大可能”，然后加和<br>$$\mathbb{E}[x]=\sum_xp(x)x$$<br>在二元连续空间，就把离散的出现次数使用概率分布代替来计算<br>$$p(y) = \int p(y,x)dx = \int p(y|x)p(x)dx$$</p>
+<h3 id="方差-Variance"><a href="#方差-Variance" class="headerlink" title="方差 Variance"></a>方差 Variance</h3><p>变量值和均值相差的期望<br>$$var[x] = \mathbb{E}[(x-\mathbb{E}[x])^2]$$</p>
+<h3 id="协方差-Covariance"><a href="#协方差-Covariance" class="headerlink" title="协方差 Covariance"></a>协方差 Covariance</h3><p>两个变量与各自均值相差的乘积的期望<br>$$cov[x,y] = \mathbb{E}[(x-\mathbb{E}[x])(y-\mathbb{E}[y])]$$</p>
 
       
     </div>
@@ -360,6 +360,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/10/ml-revise-distributions/" rel="prev" title="机器学习期末复习 2：分布">
+                机器学习期末复习 2：分布 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -436,7 +440,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -482,7 +486,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#随机变量-Random-Variable"><span class="nav-number">1.1.</span> <span class="nav-text">随机变量 Random Variable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贝叶斯概率-Bayesian-Probabilities"><span class="nav-number">1.2.</span> <span class="nav-text">贝叶斯概率 Bayesian Probabilities</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型-Models"><span class="nav-number">1.3.</span> <span class="nav-text">模型 Models</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概率质量-密度函数-Probability-Mass-Density-Function"><span class="nav-number">1.4.</span> <span class="nav-text">概率质量/密度函数 Probability Mass/Density Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概率统计指标"><span class="nav-number">1.5.</span> <span class="nav-text">概率统计指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#期望-Expectations"><span class="nav-number">1.5.1.</span> <span class="nav-text">期望 Expectations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方差-Variance"><span class="nav-number">1.5.2.</span> <span class="nav-text">方差 Variance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协方差-Covariance"><span class="nav-number">1.5.3.</span> <span class="nav-text">协方差 Covariance</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#随机变量-Random-Variable"><span class="nav-number">1.</span> <span class="nav-text">随机变量 Random Variable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯概率-Bayesian-Probabilities"><span class="nav-number">2.</span> <span class="nav-text">贝叶斯概率 Bayesian Probabilities</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型-Models"><span class="nav-number">3.</span> <span class="nav-text">模型 Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概率质量-密度函数-Probability-Mass-Density-Function"><span class="nav-number">4.</span> <span class="nav-text">概率质量/密度函数 Probability Mass/Density Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概率统计指标"><span class="nav-number">5.</span> <span class="nav-text">概率统计指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#期望-Expectations"><span class="nav-number">5.1.</span> <span class="nav-text">期望 Expectations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方差-Variance"><span class="nav-number">5.2.</span> <span class="nav-text">方差 Variance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#协方差-Covariance"><span class="nav-number">5.3.</span> <span class="nav-text">协方差 Covariance</span></a></li></ol></li></ol></div>
             
 
           </div>
