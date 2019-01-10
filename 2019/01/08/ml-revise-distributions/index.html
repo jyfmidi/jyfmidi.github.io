@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="有了概率作为表达的工具，接下来就要关注概率组成的分布 Distributions。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正别的分布打个招呼就好，好好学习高斯分布就好了，高斯分布最棒了！">
+<meta name="description" content="有了概率作为表达的工具，接下来就要关注概率组成的分布 Distributions。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正好好学习高斯分布，别的分布打个招呼就好了，高斯分布最棒了！">
 <meta name="keywords" content="学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习期末复习 2：分布">
 <meta property="og:url" content="http://jyfmidi.com/2019/01/08/ml-revise-distributions/index.html">
 <meta property="og:site_name" content="心灵的国王">
-<meta property="og:description" content="有了概率作为表达的工具，接下来就要关注概率组成的分布 Distributions。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正别的分布打个招呼就好，好好学习高斯分布就好了，高斯分布最棒了！">
+<meta property="og:description" content="有了概率作为表达的工具，接下来就要关注概率组成的分布 Distributions。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正好好学习高斯分布，别的分布打个招呼就好了，高斯分布最棒了！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-10T18:43:11.639Z">
+<meta property="og:updated_time" content="2019-01-10T20:21:20.504Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习期末复习 2：分布">
-<meta name="twitter:description" content="有了概率作为表达的工具，接下来就要关注概率组成的分布 Distributions。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正别的分布打个招呼就好，好好学习高斯分布就好了，高斯分布最棒了！">
+<meta name="twitter:description" content="有了概率作为表达的工具，接下来就要关注概率组成的分布 Distributions。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正好好学习高斯分布，别的分布打个招呼就好了，高斯分布最棒了！">
 
 
 
@@ -310,7 +310,7 @@
       
 
       
-        <p>有了概率作为表达的工具，接下来就要关注概率组成的<strong>分布 Distributions</strong>。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正别的分布打个招呼就好，好好学习高斯分布就好了，高斯分布最棒了！</p>
+        <p>有了概率作为表达的工具，接下来就要关注概率组成的<strong>分布 Distributions</strong>。动机就是，如果我们要用概率来表征我们的假设，那么至少我们得能让这种表征合理。然后具体的内容，反正好好学习高斯分布，别的分布打个招呼就好了，高斯分布最棒了！</p>
 <a id="more"></a>
 <h2 id="共轭先验-Conjugate-Prior"><a href="#共轭先验-Conjugate-Prior" class="headerlink" title="共轭先验 Conjugate Prior"></a>共轭先验 Conjugate Prior</h2><p>如果我们手上有了一些数据，要想设计一个模型来表征这些数据，我们就要定义一个可能会生成这些数据的过程，同时要引入在观测数据过程中产生的噪声，这就是<strong>似然 Likelihood</strong>。</p>
 <p>在似然中，会有一些参数控制这个生成的过程，这些就是我们需要学习出来的参数。比如一条直线 $y_i=\mathbf{w}^T\mathbf{x}_i$, 我们的似然就是 $y$ 的一个分布，这个分布由参数 $\mathbf{w}$ 和 $\mathbf{x}$ 所决定。</p>
