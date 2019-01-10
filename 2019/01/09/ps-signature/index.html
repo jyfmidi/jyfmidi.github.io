@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://jyfmidi.com/2019/01/09/ps-signature/3.png">
 <meta property="og:image" content="http://jyfmidi.com/2019/01/09/ps-signature/4.png">
 <meta property="og:image" content="http://jyfmidi.com/2019/01/09/ps-signature/5.png">
-<meta property="og:updated_time" content="2019-01-10T13:38:10.675Z">
+<meta property="og:updated_time" content="2019-01-10T13:52:07.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PS 混合模式“变暗”应用实例：制作电子签名">
 <meta name="twitter:description" content="阿金此时坐标英国，突然国内需要我寄一张签了名的身份证复印件到某个地方，哇我怎么寄哦。。。要家人朋友帮我寄么，签名怎么办呢。。。那不如换个思路，直接 P 一个发给朋友帮我寄出去不就好了。那要做的就很简单了：  获取证件图片 随便找个纸钱报个名 把签名提取出来放到证件特定位置  其实以前做过类似的事情，不过第三步是利用各种色阶魔棒阈值操作，正经抠图抠出签名，不过效果很假只能娱乐。最近正好在学习 Pho">
@@ -631,7 +631,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -684,6 +684,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
 
   
 
