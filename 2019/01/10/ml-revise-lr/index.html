@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="心灵的国王">
 <meta property="og:description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-10T20:28:55.932Z">
+<meta property="og:updated_time" content="2019-01-11T02:06:07.608Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习期末复习 3：线性回归">
 <meta name="twitter:description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
@@ -322,13 +322,20 @@
 <p>$$f(x)=w^T\phi(x)=\sum\limits_{i=1}^{d}w_i\phi_i(x)$$</p>
 <p>其中$w\in \mathbb{R}^m$，而 $\phi$ 是一个 $d$ 维到 $m$ 维的映射 $\phi:\mathbb{R}^d\rightarrow\mathbb{R}^m$，也即 $\phi(x)=(\phi_1(x),\ldots,\phi_m(x))$</p>
 <p>可以看到，对于 $f$ 和 $\phi$，它们之间的映射的确是线性的，也就是 $w$ 是线性的，这也就是线性回归得名的原因，而 $\phi$ 本身，完全可以是非线性的。使用基函数，就可以表征更广泛的映射关系，比如傅立叶变换、小波分析等，就是以波形函数作为基函数的例子</p>
-<h2 id="获取模型"><a href="#获取模型" class="headerlink" title="获取模型"></a>获取模型</h2><p>那我们当然要先学习出模型，再使用模型进行预测</p>
-<ol>
-<li>首先定义线性回归模型 $t=\mathbf{w}^T\phi(x)+\epsilon$</li>
-<li>假设模型的噪声是可加的，并且是某种特定的分布形式，这样我们就获得了似然</li>
-<li>假设似然是高斯分布，而且后验中的参数就是高斯分布的均值，那么共轭先验就也是高斯分布</li>
-<li>然后使用高斯相似性，获取后验分布</li>
-</ol>
+<h2 id="定义模型似然"><a href="#定义模型似然" class="headerlink" title="定义模型似然"></a>定义模型似然</h2><p>这一步也就是要考虑，给定一个模型，可能的输出是什么。</p>
+<p>首先定义线性回归模型 $t=w^T\phi(x)+\epsilon$，其中我们假设 $\epsilon \sim \mathcal{N}(0,\beta^{-1}l)$，把模型变一下形式<br>$$\epsilon = t-w^T\phi(x) \sim \mathcal{N}(\epsilon|0,\beta^{-1}l)$$<br>然后把高斯分布展开，就可以写成<br>$$\mathcal{N}(t-w^T\phi(x)|0,\beta^{-1}l) = (\frac{\beta}{2\pi})^{\frac{1}{2}}e^{-\frac{1}{2}(t-w^T\phi(x))\beta(t-w^T\phi(x))} = \mathcal{N}(t|w^T\phi(x),\beta^{-1}l)$$<br>那单个点的似然就可以表征为噪声<br>$$p(t|x,w,\beta)=\mathcal{N}(t|w^T\phi(x),\beta^{-1})$$<br>在这个模型中，似然其实是一种噪声的量化，观察值和实际值的误差越小，似然就越大。这里可以用<strong>最大似然估计 MLE</strong> 来求解。我们假设点的观测都是独立的，那么整个模型的似然就可以用单点似然的乘积来计算<br>$$p(t|X,w,\beta)=\prod\limits^N_{n=1}\mathcal{N}(t|w^T\phi(x_n),\beta^{-1})=\prod\limits^N_{n=1}\frac{1}{(2\pi\beta^{-1})^{\frac{1}{2}}}e^{-\frac{1}{2}\beta(t_n-w^T\phi(x_n))^2}$$<br>$$<br>=(\frac{\beta}{2\pi})^{\frac{N}{2}}e^{-\frac{\beta}{2}\sum^N_{n=1}(t_n-w^T\phi(x_n))^2}<br>$$<br>然后两边取对数就获得了<br>$$\log p(t|X,w,\beta)=\frac{N}{2}(\log \beta-\log 2\pi)-\beta \frac{1}{2}\sum\limits^{N}_{n=1}(t_n-w^T\phi(x_n))^2$$</p>
+<p>这个式子有两项，第一项是个常数，所以不用管他，第二项就是需要关心的误差，两边取梯度获得<br>$$\nabla \log p(t|X,w,\beta)=\beta \sum\limits^{N}_{n=1}(t_n-w^T\phi(x_n))\phi(x_n)^T$$<br>求梯度为 0 的驻点<br>$$0 = \sum\limits^N_{n=1}t_n\phi(x_n)^T-w^T(\sum^N_{n=1}\phi(x_n)\phi(x_n)^T)$$<br>解出 $w_{MLE}=(\phi(X)^T\phi(X))^{-1}\phi(X)^Tt$ 以及精度 $\frac{1}{\beta_{MLE}}=\frac{1}{N}\sum\limits^N_{n=1}(t_n-w^T_{MLE}\phi(x_n))^2$</p>
+<h2 id="假设模型先验"><a href="#假设模型先验" class="headerlink" title="假设模型先验"></a>假设模型先验</h2><p>这一步中要考虑的是，哪些模型比较可能会出现，也就是获取先验，先验就代表了我们对于模型的认知。</p>
+<p>既然我们的似然已经是 $w$ 的高斯分布了，自然而然会想到使用高斯分布的共轭先验，让后验也具有高斯分布的性质便于计算，所以假设先验也为高斯分布<br>$$p(w)=\mathcal{N}(w|m_0,S_0)$$</p>
+<h2 id="计算模型后验"><a href="#计算模型后验" class="headerlink" title="计算模型后验"></a>计算模型后验</h2><p>这一步就是根据新的观测，更新我们的认知，也就是获取后验。</p>
+<p>我们已经获得了似然<br>$$p(t|X,w,\beta)\propto \exp(-\frac{1}{2}\beta(t-w^T\phi(X))^T(t-w^T\phi(X)))$$</p>
+<p>又假设了高斯的共轭先验<br>$$p(w)=\mathcal{N}(w|m_0,S_0)\propto \exp(-\frac{1}{2S_0}(w-m_0)^T(w-m_0))$$</p>
+<p>根据高斯相似性质，可以知道后验也将是一个高斯分布，不妨假设为 $\mathcal{N}(m_N,S_N)$，根据贝叶斯公式，可以计算后验<br>$$p(w|X,t) \sim \mathcal{N}(m_N,S_N) \propto p(t|X,w,\beta)p(w)$$<br>展开右侧似然和先验的高斯分布，得到<br>$$p(w|X,t)\propto \exp(\beta(t^Tt-2w^T\phi(X)t+\phi(X)^Tww^T\phi(X))+\frac{1}{S_0}(w^Tw-2w^Tm_0+m_0^Tm_0))$$<br>依据 $w$ 的次数分组，可以得到<br>$$p(w|X,t) \propto \exp((\beta t^Tt+\frac{1}{S_0}m_0^Tm_0)-2w^T(\beta\phi(X)t+\frac{1}{S_0}m_0)+w^T(\beta\phi(X)\phi(X)^T+\frac{1}{S_0})w)$$<br>而由于后验是高斯分布 $p(w|X,t) \sim \mathcal{N}(m_N,S_N)$，因此展开式的 $e$ 指数项一定包含<br>$$(w-m_N)^TS_N(w-m_N)=const-2w^TS_Nm_N+w^TS_N^{-1}w$$<br>因此比较两个式子，就可以填充后验的高斯分布参数</p>
+<p>$$S_N=(\beta\phi(X)^T\phi(X)+\frac{1}{S_0})^{-1}$$<br>$$m_N=(\beta\phi(X)^T\phi(X)+\frac{1}{S_0})(\beta\phi(X)^Tt+\frac{1}{S_0}m_0)$$</p>
+<h2 id="预测分布"><a href="#预测分布" class="headerlink" title="预测分布"></a>预测分布</h2><p>获取了模型后，就可以根据我们对于模型的认识，预测模型结果了</p>
+<p>$$p(t’|t,x’,X,\alpha,\beta)=\int p(t’|x’,w,\beta)p(w|t,X,\alpha,\beta)dw$$</p>
+<p>其中 $t’$ 是 $x’$ 处的输出，$x’$ 是我们的输入目标点，$w$ 是权重，和 $x$ 相乘后给出输出值 $\alpha$ $\beta$ 是先验和似然的参数，$X,t$ 是训练用的输入输出数据对。</p>
+<p>可以看到，式子中我们把 $w$ 边缘化了，对它就积分就能把它消掉。这样他就不会出现在最后的式子中，因为其实我们并不关心 $w$ 具体是多少，我们只关心在 $x’$ 处能否输出正确的值 $t’$ </p>
 
       
     </div>
@@ -446,7 +453,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -520,7 +527,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基函数-Basis-Function"><span class="nav-number">2.</span> <span class="nav-text">基函数 Basis Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取模型"><span class="nav-number">3.</span> <span class="nav-text">获取模型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基函数-Basis-Function"><span class="nav-number">2.</span> <span class="nav-text">基函数 Basis Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义模型似然"><span class="nav-number">3.</span> <span class="nav-text">定义模型似然</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#假设模型先验"><span class="nav-number">4.</span> <span class="nav-text">假设模型先验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算模型后验"><span class="nav-number">5.</span> <span class="nav-text">计算模型后验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预测分布"><span class="nav-number">6.</span> <span class="nav-text">预测分布</span></a></li></ol></div>
             
 
           </div>
