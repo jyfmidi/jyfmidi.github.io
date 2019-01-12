@@ -258,7 +258,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/12/ml-revise-gp/" itemprop="url">机器学习期末复习 4：高斯过程</a></h1>
+                <a class="post-title-link" href="/2019/01/12/ml-revise-gp/" itemprop="url">机器学习期末复习 5：高斯过程</a></h1>
         
 
         <div class="post-meta">
@@ -309,9 +309,15 @@
 
       
         
-          
-            
-          
+          <p>使用核回归，我们就可以处理更复杂的模型了。但是核回归有两个不足之处，首先，核回归不能算是一个真正的模型，虽然给我们提供了一个函数，但是并没有提供不确定性测度；此外，选择什么核函数、以及选择什么样的参数来控制我们核函数的形状，都是一拍脑袋的，并没有什么道理可言。</p>
+<p>而高斯过程就是在无穷的函数空间中选取<strong>函数实例 Instantiation</strong> 的一种方式。高斯过程的假设就是，每一个可能被选到的函数实例都遵循高斯分布。更重要的是，这就意味着<strong>所有可能被取到的函数实例的联合分布</strong>也遵循高斯分布，这就是高斯过程的根基。通过高斯分布，我们就可以给模型加入不确定性测度，从而有能力描述所有的分布。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/12/ml-revise-gp/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

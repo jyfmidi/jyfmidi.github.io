@@ -79,15 +79,18 @@
 
 
 
+<meta name="description" content="使用核回归，我们就可以处理更复杂的模型了。但是核回归有两个不足之处，首先，核回归不能算是一个真正的模型，虽然给我们提供了一个函数，但是并没有提供不确定性测度；此外，选择什么核函数、以及选择什么样的参数来控制我们核函数的形状，都是一拍脑袋的，并没有什么道理可言。 而高斯过程就是在无穷的函数空间中选取函数实例 Instantiation 的一种方式。高斯过程的假设就是，每一个可能被选到的函数实例都遵循">
 <meta name="keywords" content="学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习期末复习 4：高斯过程">
+<meta property="og:title" content="机器学习期末复习 5：高斯过程">
 <meta property="og:url" content="http://jyfmidi.com/2019/01/12/ml-revise-gp/index.html">
 <meta property="og:site_name" content="心灵的国王">
+<meta property="og:description" content="使用核回归，我们就可以处理更复杂的模型了。但是核回归有两个不足之处，首先，核回归不能算是一个真正的模型，虽然给我们提供了一个函数，但是并没有提供不确定性测度；此外，选择什么核函数、以及选择什么样的参数来控制我们核函数的形状，都是一拍脑袋的，并没有什么道理可言。 而高斯过程就是在无穷的函数空间中选取函数实例 Instantiation 的一种方式。高斯过程的假设就是，每一个可能被选到的函数实例都遵循">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-12T15:46:41.012Z">
+<meta property="og:updated_time" content="2019-01-12T16:58:02.006Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习期末复习 4：高斯过程">
+<meta name="twitter:title" content="机器学习期末复习 5：高斯过程">
+<meta name="twitter:description" content="使用核回归，我们就可以处理更复杂的模型了。但是核回归有两个不足之处，首先，核回归不能算是一个真正的模型，虽然给我们提供了一个函数，但是并没有提供不确定性测度；此外，选择什么核函数、以及选择什么样的参数来控制我们核函数的形状，都是一拍脑袋的，并没有什么道理可言。 而高斯过程就是在无穷的函数空间中选取函数实例 Instantiation 的一种方式。高斯过程的假设就是，每一个可能被选到的函数实例都遵循">
 
 
 
@@ -123,7 +126,7 @@
 
 
 
-  <title>机器学习期末复习 4：高斯过程 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>机器学习期末复习 5：高斯过程 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -257,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">机器学习期末复习 4：高斯过程</h1>
+          <h1 class="post-title" itemprop="name headline">机器学习期末复习 5：高斯过程</h1>
         
 
         <div class="post-meta">
@@ -307,7 +310,11 @@
       
 
       
-        
+        <p>使用核回归，我们就可以处理更复杂的模型了。但是核回归有两个不足之处，首先，核回归不能算是一个真正的模型，虽然给我们提供了一个函数，但是并没有提供不确定性测度；此外，选择什么核函数、以及选择什么样的参数来控制我们核函数的形状，都是一拍脑袋的，并没有什么道理可言。</p>
+<p>而高斯过程就是在无穷的函数空间中选取<strong>函数实例 Instantiation</strong> 的一种方式。高斯过程的假设就是，每一个可能被选到的函数实例都遵循高斯分布。更重要的是，这就意味着<strong>所有可能被取到的函数实例的联合分布</strong>也遵循高斯分布，这就是高斯过程的根基。通过高斯分布，我们就可以给模型加入不确定性测度，从而有能力描述所有的分布。</p>
+<a id="more"></a>
+<p>对于第一个不足，我们虽然在模型输出中有 $\epsilon \sim \mathcal{N}(\mu,\Sigma)$ 表示不确定性，但是在映射中没有任何不确定性。就比如我们认为是线性映射，那么映射就是一条线；如果我们认为是某种核函数，那么也是某个确定的解析式。因此，这就要求我们对于函数映射的形态必须有一个先验假设。</p>
+
       
     </div>
     
