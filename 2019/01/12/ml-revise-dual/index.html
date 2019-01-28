@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="学习,">
+  <meta name="keywords" content="学习,机器学习,">
 
 
 
@@ -80,16 +80,16 @@
 
 
 <meta name="description" content="其实就是 Dual Linear Regression，但感觉是非常迷幻的概念，网上相关资料真的好少，主要意思就是我不用原始数据来学习，而是把数据集映射到另一个对偶空间，然后在那个对偶空间里解决问题，感觉有点像表征学习？这样的好处就是，相比普通的线性回归用参数 $w$ 来表达变量之间的关系，对偶线性回归就不需要参数了，可以用变量本身来表达变量之间的关系，这样模型的复杂度就不会被参数的维度影响，不至">
-<meta name="keywords" content="学习">
+<meta name="keywords" content="学习,机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习自我总结 4：对偶线性回归">
+<meta property="og:title" content="机器学习 4：对偶线性回归">
 <meta property="og:url" content="http://jyfmidi.com/2019/01/12/ml-revise-dual/index.html">
 <meta property="og:site_name" content="心灵的国王">
 <meta property="og:description" content="其实就是 Dual Linear Regression，但感觉是非常迷幻的概念，网上相关资料真的好少，主要意思就是我不用原始数据来学习，而是把数据集映射到另一个对偶空间，然后在那个对偶空间里解决问题，感觉有点像表征学习？这样的好处就是，相比普通的线性回归用参数 $w$ 来表达变量之间的关系，对偶线性回归就不需要参数了，可以用变量本身来表达变量之间的关系，这样模型的复杂度就不会被参数的维度影响，不至">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-15T01:51:24.030Z">
+<meta property="og:updated_time" content="2019-01-28T17:37:30.475Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习自我总结 4：对偶线性回归">
+<meta name="twitter:title" content="机器学习 4：对偶线性回归">
 <meta name="twitter:description" content="其实就是 Dual Linear Regression，但感觉是非常迷幻的概念，网上相关资料真的好少，主要意思就是我不用原始数据来学习，而是把数据集映射到另一个对偶空间，然后在那个对偶空间里解决问题，感觉有点像表征学习？这样的好处就是，相比普通的线性回归用参数 $w$ 来表达变量之间的关系，对偶线性回归就不需要参数了，可以用变量本身来表达变量之间的关系，这样模型的复杂度就不会被参数的维度影响，不至">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>机器学习自我总结 4：对偶线性回归 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>机器学习 4：对偶线性回归 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -201,6 +201,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -260,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">机器学习自我总结 4：对偶线性回归</h1>
+          <h1 class="post-title" itemprop="name headline">机器学习 4：对偶线性回归</h1>
         
 
         <div class="post-meta">
@@ -282,6 +292,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -351,6 +383,8 @@
           
             <a href="/tags/学习/" rel="tag"><i class="fa fa-tag"></i> 学习</a>
           
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
         </div>
       
 
@@ -372,8 +406,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/12/ml-revise-gp/" rel="prev" title="机器学习自我总结 5：高斯过程">
-                机器学习自我总结 5：高斯过程 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/12/ml-revise-gp/" rel="prev" title="机器学习 5：高斯过程">
+                机器学习 5：高斯过程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -453,12 +487,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -466,7 +509,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

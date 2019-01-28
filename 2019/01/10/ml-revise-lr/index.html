@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="学习,">
+  <meta name="keywords" content="学习,机器学习,">
 
 
 
@@ -80,18 +80,18 @@
 
 
 <meta name="description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
-<meta name="keywords" content="学习">
+<meta name="keywords" content="学习,机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习自我总结 3：线性回归">
+<meta property="og:title" content="机器学习 3：线性回归">
 <meta property="og:url" content="http://jyfmidi.com/2019/01/10/ml-revise-lr/index.html">
 <meta property="og:site_name" content="心灵的国王">
 <meta property="og:description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://jyfmidi.com/2019/01/10/ml-revise-lr/prior.png">
 <meta property="og:image" content="http://jyfmidi.com/2019/01/10/ml-revise-lr/posterior.jpg">
-<meta property="og:updated_time" content="2019-01-15T01:51:27.592Z">
+<meta property="og:updated_time" content="2019-01-28T17:37:21.229Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习自我总结 3：线性回归">
+<meta name="twitter:title" content="机器学习 3：线性回归">
 <meta name="twitter:description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
 <meta name="twitter:image" content="http://jyfmidi.com/2019/01/10/ml-revise-lr/prior.png">
 
@@ -129,7 +129,7 @@
 
 
 
-  <title>机器学习自我总结 3：线性回归 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>机器学习 3：线性回归 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -204,6 +204,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -263,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">机器学习自我总结 3：线性回归</h1>
+          <h1 class="post-title" itemprop="name headline">机器学习 3：线性回归</h1>
         
 
         <div class="post-meta">
@@ -285,6 +295,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -375,6 +407,8 @@
         <div class="post-tags">
           
             <a href="/tags/学习/" rel="tag"><i class="fa fa-tag"></i> 学习</a>
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
           
         </div>
       
@@ -478,12 +512,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -491,7 +534,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
