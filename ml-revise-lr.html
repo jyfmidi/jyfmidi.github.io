@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="学习,机器学习,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
+<meta name="keywords" content="学习,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习 3：线性回归">
+<meta property="og:url" content="https://jyfmidi.com/ml-revise-lr.html">
+<meta property="og:site_name" content="心灵的国王">
+<meta property="og:description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://jyfmidi.com/prior.png">
+<meta property="og:image" content="https://jyfmidi.com/posterior.jpg">
+<meta property="og:updated_time" content="2019-01-28T17:37:21.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习 3：线性回归">
+<meta name="twitter:description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
+<meta name="twitter:image" content="https://jyfmidi.com/prior.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jyfmidi.com/ml-revise-lr.html">
+
+
+
+
+
+  <title>机器学习 3：线性回归 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">心灵的国王</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">RAjAtmanah | राजात्मनह</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jyfmidi.com/ml-revise-lr.html">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jyfmidi">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心灵的国王">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习 3：线性回归</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-10T16:55:20+00:00">
+                2019-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……</p>
+<a id="more"></a>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>手上有数据 $D=((x_1,y_1),\ldots,(x_n,y_n)),其中 x_i\in \mathbb{R}^d, y_i\in \mathbb{R}$</p>
+<p>然后我们需要获取一个 $d$ 维到 1 维的映射 $f:\mathbb{R}^d\rightarrow \mathbb{R}$，能够根据新的 $x$ 预测出 $y$</p>
+<h2 id="基函数-Basis-Function"><a href="#基函数-Basis-Function" class="headerlink" title="基函数 Basis Function"></a>基函数 Basis Function</h2><p>线性回归说是线性，其实回归出来不一定是线形，这就是基函数的作用</p>
+<p>一个基本的线形函数模型是</p>
+<p>$$f(x)=w^Tx=\sum\limits_{i=1}^{d}w_ix(i)$$</p>
+<p>其中 $x,w\in\mathbb{R}^d,y\in\mathbb{R}$</p>
+<p>而如果把其中的 $x$ 用基函数 $\phi(x)$ 代替，就变成了</p>
+<p>$$f(x)=w^T\phi(x)=\sum\limits_{i=1}^{d}w_i\phi_i(x)$$</p>
+<p>其中$w\in \mathbb{R}^m$，而 $\phi$ 是一个 $d$ 维到 $m$ 维的映射 $\phi:\mathbb{R}^d\rightarrow\mathbb{R}^m$，也即 $\phi(x)=(\phi_1(x),\ldots,\phi_m(x))$</p>
+<p>可以看到，对于 $f$ 和 $\phi$，它们之间的映射的确是线性的，也就是 $w$ 是线性的，这也就是线性回归得名的原因，而 $\phi$ 本身，完全可以是非线性的。使用基函数，就可以表征更广泛的映射关系，比如傅立叶变换、小波分析等，就是以波形函数作为基函数的例子</p>
+<h2 id="最大似然估计-MLE"><a href="#最大似然估计-MLE" class="headerlink" title="最大似然估计 MLE"></a>最大似然估计 MLE</h2><p>最大似然估计也就是要考虑，给定一个模型，最可能的输出是什么。</p>
+<p>首先定义线性回归模型 $t=w^T\phi(x)+\epsilon$，其中我们假设 $\epsilon \sim \mathcal{N}(0,\beta^{-1}l)$，把模型变一下形式<br>$$\epsilon = t-w^T\phi(x) \sim \mathcal{N}(\epsilon|0,\beta^{-1}l)$$<br>然后把高斯分布展开，就可以写成<br>$$\mathcal{N}(t-w^T\phi(x)|0,\beta^{-1}l) = (\frac{\beta}{2\pi})^{\frac{1}{2}}e^{-\frac{1}{2}(t-w^T\phi(x))\beta(t-w^T\phi(x))} = \mathcal{N}(t|w^T\phi(x),\beta^{-1}l)$$<br>那单个点的似然就可以表征为噪声<br>$$p(t|x,w,\beta)=\mathcal{N}(t|w^T\phi(x),\beta^{-1})$$<br>在这个模型中，似然其实是一种噪声的量化，观察值和实际值的误差越小，似然就越大。这里可以用<strong>最大似然估计 MLE</strong> 来求解。我们假设点的观测都是独立的，那么整个模型的似然就可以用单点似然的乘积来计算</p>
+<p>\begin{align}<br>p(t|X,w,\beta)&amp;=\prod\limits^N_{n=1}\mathcal{N}(t|w^T\phi(x_n),\beta^{-1})\\<br>&amp;=\prod\limits^N_{n=1}\frac{1}{(2\pi\beta^{-1})^{\frac{1}{2}}}e^{-\frac{1}{2}\beta(t_n-w^T\phi(x_n))^2}\\<br>&amp;=(\frac{\beta}{2\pi})^{\frac{N}{2}}e^{-\frac{\beta}{2}\sum^N_{n=1}(t_n-w^T\phi(x_n))^2}<br>\end{align} </p>
+<p>然后两边取对数就获得了<br>$$\log p(t|X,w,\beta)=\frac{N}{2}(\log \beta-\log 2\pi)-\beta \frac{1}{2}\sum\limits^{N}_{n=1}(t_n-w^T\phi(x_n))^2$$</p>
+<p>这个式子有两项，第一项是个常数，所以不用管他，第二项就是需要关心的误差，两边取梯度获得<br>$$\nabla \log p(t|X,w,\beta)=\beta \sum\limits^{N}_{n=1}(t_n-w^T\phi(x_n))\phi(x_n)^T$$<br>求梯度为 0 的驻点<br>$$0 = \sum\limits^N_{n=1}t_n\phi(x_n)^T-w^T(\sum^N_{n=1}\phi(x_n)\phi(x_n)^T)$$<br>解出<br>\begin{align}<br>w_{MLE}&amp;=(\Phi(X)^T\Phi(X))^{-1}\Phi(X)^Tt\\<br>\frac{1}{\beta_{MLE}}&amp;=\frac{1}{N}\sum\limits^N_{n=1}(t_n-w^T_{MLE}\phi(x_n))^2<br>\end{align}<br>其中 $\Phi$ 叫做<strong>设计矩阵 Design Matrix</strong>，矩阵元素 $\Phi_{nj}=\phi_j(x_n)$</p>
+<p>$$\Phi =<br>\left(<br>\begin{matrix}<br>\phi_0(x_1) &amp; \phi_1(x_1) &amp; \ldots &amp; \phi_{M-1}(x_1) \\<br>\phi_0(x_2) &amp; \phi_1(x_2) &amp; \ldots &amp; \phi_{M-1}(x_2) \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>\phi_0(x_N) &amp; \phi_1(x_N) &amp; \ldots &amp; \phi_{M-1}(x_N)<br>\end{matrix}<br>\right)$$</p>
+<p>整个系数<br>$$\Phi^\dagger=(\Phi^T\Phi)^{-1}\Phi^T$$<br>叫做设计矩阵 $\Phi$ 的<strong>摩尔彭若斯伪逆矩阵 Moore-Penrose Psudo-inverse</strong>，是一种矩阵求逆在非方阵情况下的推广，如果 $\Phi$ 是方阵且可逆，则 $\Phi^\dagger = \Phi^{-1}$<br>那此时我们把设计矩阵拆开，并代入之前式子中的误差函数，就可以进一步变换<br>\begin{align}<br>E_D(w)&amp;=\frac{1}{2}\sum\limits^N_{n=1}(t_n-w^T\phi(x_n))^2\\<br>&amp;=\frac{1}{2}\sum\limits^N_{n=1}(t_n-(w_0+\sum\limits^{M-1}_{j=1}w_j\phi_j(x_n)))^2<br>\end{align}<br>对于 $w_0$ 求导，导数为 0，就可以解出</p>
+<p>\begin{align}<br>w_0&amp;=\frac{1}{N}\sum\limits^N_{n=1}t_n-\sum\limits^{M-1}_{j=1}(w_j\frac{1}{N}\sum\limits^N_{n=1}\phi_j(x_n))\\<br>&amp;=\bar{t}-\sum\limits^{M-1}_{j=1}w_j\bar{\phi_j}<br>\end{align}<br>这就说明了，$w_0$ 项表征了真实值和观测值均值的差距</p>
+<h2 id="贝叶斯线性回归"><a href="#贝叶斯线性回归" class="headerlink" title="贝叶斯线性回归"></a>贝叶斯线性回归</h2><p>在 MLE 方法中的一个问题就是，为了控制模型复杂度，必须要控制基函数的数量。如果仅考虑最大化似然，很容易产生过于复杂的模型而导致过拟合。而贝叶斯线性回归中，模型的复杂度仅取决于数据本身，那就可以规避过拟合的问题。</p>
+<h3 id="假设模型先验"><a href="#假设模型先验" class="headerlink" title="假设模型先验"></a>假设模型先验</h3><p>这一步中要考虑的是，哪些模型比较可能会出现，也就是获取先验，先验就代表了我们对于模型的认知。</p>
+<p>既然我们的似然已经是 $w$ 的高斯分布了，自然而然会想到使用高斯分布的共轭先验，让后验也具有高斯分布的性质便于计算，所以假设先验也为高斯分布<br>$$p(w)=\mathcal{N}(w|m_0,S_0)$$</p>
+<h3 id="计算模型后验"><a href="#计算模型后验" class="headerlink" title="计算模型后验"></a>计算模型后验</h3><p>这一步就是根据新的观测，更新我们的认知，也就是获取后验。</p>
+<p>我们已经获得了似然<br>$$p(t|X,w,\beta)\propto \exp(-\frac{1}{2}\beta(t-w^T\phi(X))^T(t-w^T\phi(X)))$$</p>
+<p>又假设了高斯的共轭先验<br>$$p(w)=\mathcal{N}(w|m_0,S_0)\propto \exp(-\frac{1}{2S_0}(w-m_0)^T(w-m_0))$$</p>
+<p>根据高斯相似性质，可以知道后验也将是一个高斯分布，不妨假设为 $\mathcal{N}(m_N,S_N)$，根据贝叶斯公式，可以计算后验<br>$$p(w|X,t) \sim \mathcal{N}(m_N,S_N) \propto p(t|X,w,\beta)p(w)$$<br>展开右侧似然和先验的高斯分布，得到<br>$$p(w|X,t)\propto \exp(\beta(t^Tt-2w^T\phi(X)t+\phi(X)^Tww^T\phi(X))+\frac{1}{S_0}(w^Tw-2w^Tm_0+m_0^Tm_0))$$<br>依据 $w$ 的次数分组，可以得到<br>$$p(w|X,t) \propto \exp((\beta t^Tt+\frac{1}{S_0}m_0^Tm_0)-2w^T(\beta\phi(X)t+\frac{1}{S_0}m_0)+w^T(\beta\phi(X)\phi(X)^T+\frac{1}{S_0})w)$$<br>而由于后验是高斯分布 $p(w|X,t) \sim \mathcal{N}(m_N,S_N)$，因此展开式的 $e$ 指数项一定包含<br>$$(w-m_N)^TS_N(w-m_N)=const-2w^TS_Nm_N+w^TS_N^{-1}w$$<br>因此比较两个式子，就可以填充后验的高斯分布参数</p>
+<p>\begin{align}<br>S_N&amp;=(\beta\phi(X)^T\phi(X)+\frac{1}{S_0})^{-1}\\<br>m_N&amp;=(\beta\phi(X)^T\phi(X)+\frac{1}{S_0})^{-1}(\beta\phi(X)^Tt+\frac{1}{S_0}m_0)<br>\end{align} </p>
+<h3 id="预测分布"><a href="#预测分布" class="headerlink" title="预测分布"></a>预测分布</h3><p>获取了模型后，就可以根据我们对于模型的认识，预测模型结果了</p>
+<p>$$p(t’|t,x’,X,\alpha,\beta)=\int p(t’|x’,w,\beta)p(w|t,X,\alpha,\beta)dw$$</p>
+<p>其中 $t’$ 是 $x’$ 处的输出，$x’$ 是我们的输入目标点，$w$ 是权重，和 $x$ 相乘后给出输出值 $\alpha$ $\beta$ 是先验和似然的参数，$X,t$ 是训练用的输入输出数据对。</p>
+<p>可以看到，式子中我们把 $w$ 边缘化了，对它就积分就能把它消掉。这样他就不会出现在最后的式子中，因为其实我们并不关心 $w$ 具体是多少，我们只关心在 $x’$ 处能否输出正确的值 $t’$</p>
+<h3 id="一个具体的应用实例"><a href="#一个具体的应用实例" class="headerlink" title="一个具体的应用实例"></a>一个具体的应用实例</h3><p>那么现在就在具体的模型中实践线性回归，使用最简单的线性模型，模型设置如下<br>\begin{align}<br>y_i &amp;= w_0x_i+w_1+\epsilon\\<br>x &amp;= [-1,-0.99,\ldots,0.99,1]\\<br>\epsilon &amp;= \mathcal{N}(0,0.3)\\<br>W &amp;= [-1.3,0.5]<br>\end{align} </p>
+<p>首先基于以上信息，生成观察数据集 $D=((x_0,y_0),\ldots,(x_{100},y_{100}))$，这个数据集中的 $y$ 在生成的时候会与真实值有 $\epsilon$ 的误差，那我们的目的就是从观察数据集中能够学习出尽可能和真实值 $W$ 接近的后验 $W_N$。</p>
+<p>为了让后验能够出现比较熟悉的高斯分布，以及考虑到尽可能简化模型，我们假设共轭先验为<strong>零均值各向同性 Zero Mean Isotropic</strong> 二维高斯分布 $\mathcal{N}(W|(0,0),I)$。以两个线性参数 $w_0$ 和 $w_1$ 为底面坐标轴，可能共现的概率为纵轴，三维空间的高斯先验就长这样，底面的圈圈是等高线图</p>
+<div style="width: 50%; margin: auto"><br><img src="prior.png" alt=""><br></div>
+
+<p>然后我们获取后验的方法就是，依据先验的高斯分布进行参数 $W$ 的采样，采样结果是一组先验参数 $W_0=(w_0,w_1)$，然后就可以使用线性回归计算出后验。后验也是一个高斯分布，$p(W|X,Y)\sim \mathcal{N}(W|m_N,S_N)$，其中<br>\begin{align}<br>Y &amp;= W^TX\\<br>S_N&amp;=(X^TX+I)^{-1}\\<br>m_N&amp;=(X^YX+I)^{-1}(X^TY+W_0)<br>\end{align}<br>获取了后验之后，我们就更新了自己对于模型的认知，也就是说，$W$ 的分布基于后验参数发生了变化，但是由于高斯相似性，新的后验分布还是一个二维高斯分布。</p>
+<p>那么其实之后的步骤就呼之欲出了，我们从先验采样一个点，根据线性回归得出了后验，这是第一次迭代；那现在我们<strong>第一次迭代的后验</strong>就成为了我们<strong>第二次迭代的先验</strong>，再次从这次的先验采样一个点，根据线性回归得出新的后验，这样循环往复，就逐渐逼近了真实的 $W$ 值。</p>
+<p>为了直观感受这一逐渐趋向真实值的过程，我们进行多次迭代。每次得出后验后，先画出后验高斯分布的形状，都在在后验参数分布上多次进行 $W$ 的采样，采样的结果是多组 $W_N$ 的值，根据这些采样的参数作出相应的直线 $y_N=W_N^TX$。这样获得的结果就是下面这样</p>
+<div style="width: 100%; margin: auto"><br><img src="posterior.jpg" alt=""><br></div>
+
+<p>可以看到，每次获得新的后验分布还是一个二维高斯分布，只不过形状发生了改变。直观地看，“山峰”变高了，而“山底”变窄了。这里的“山峰”指的就是整个分布中最可能出现的一组 $(w_0,w_1)$ 出现的概率，而“山底”代表了<strong>我们置信度的边缘</strong>，因为只有出现在“山上”的参数组，才是<strong>我们认为可能为真的参数组</strong>，因此在“平原”上的坐标都是我们不关心的，因为这些地方都是方差过大的地方，我们认为这些地方的概率太低了。因此，在不断获得新的后验的过程中，<strong>我们对于某一区域存在真实值这一事件更确定了，而这个存在真实值的区域的范围正被我们不断缩小</strong>。并且可以从图中看出，山峰的位置逐渐趋于真实值 $W=[-1.3,0.5]$</p>
+<p>这从采样直线的样子也可以看出，随着迭代次数的增加，采样出的直线 $y_N=W_N^TX$ 的斜率也逐渐趋同，或者说逐渐趋于真实值 $W=[-1.3,0.5]$</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"><i class="fa fa-tag"></i> 学习</a>
+          
+            <a href="/tags/机器学习/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/cook-rainbow-porridge.html" rel="next" title="「Vegan 纯素」留学省钱料理 1：有机燕麦五色粥">
+                <i class="fa fa-chevron-left"></i> 「Vegan 纯素」留学省钱料理 1：有机燕麦五色粥
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/cook-miso-noodles.html" rel="prev" title="「Vegan 纯素」留学省钱料理 2：照烧腐竹味噌浓汤挂面">
+                「Vegan 纯素」留学省钱料理 2：照烧腐竹味噌浓汤挂面 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="jyfmidi">
+            
+              <p class="site-author-name" itemprop="name">jyfmidi</p>
+              <p class="site-description motion-element" itemprop="description">不会写代码的翻译不是好厨子</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jyfmidi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jyfmidi@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/jyfmidi" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://instagram.com/jyfmidi" target="_blank" title="Instagram">
+                      
+                        <i class="fa fa-fw fa-instagram"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基函数-Basis-Function"><span class="nav-number">2.</span> <span class="nav-text">基函数 Basis Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大似然估计-MLE"><span class="nav-number">3.</span> <span class="nav-text">最大似然估计 MLE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯线性回归"><span class="nav-number">4.</span> <span class="nav-text">贝叶斯线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#假设模型先验"><span class="nav-number">4.1.</span> <span class="nav-text">假设模型先验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算模型后验"><span class="nav-number">4.2.</span> <span class="nav-text">计算模型后验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测分布"><span class="nav-number">4.3.</span> <span class="nav-text">预测分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个具体的应用实例"><span class="nav-number">4.4.</span> <span class="nav-text">一个具体的应用实例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jyfmidi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
