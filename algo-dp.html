@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="不会写代码的翻译不是好厨子">
+<meta name="description" content="马上得找工作了感觉慌得一逼，感觉这段时间都在研究各种理论上的东西，工程上各种基础的代码能力都比不上本科的时候了，赶紧跟着 Stanford 的 CS97SI 补一补，临时抱抱佛脚。">
 <meta name="keywords" content="学习,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法基础抱抱佛脚">
+<meta property="og:title" content="算法基础抱佛脚">
 <meta property="og:url" content="https://jyfmidi.com/algo-dp.html">
 <meta property="og:site_name" content="心灵的国王">
-<meta property="og:description" content="不会写代码的翻译不是好厨子">
+<meta property="og:description" content="马上得找工作了感觉慌得一逼，感觉这段时间都在研究各种理论上的东西，工程上各种基础的代码能力都比不上本科的时候了，赶紧跟着 Stanford 的 CS97SI 补一补，临时抱抱佛脚。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-07T14:39:43.907Z">
+<meta property="og:updated_time" content="2019-02-07T15:35:12.429Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法基础抱抱佛脚">
-<meta name="twitter:description" content="不会写代码的翻译不是好厨子">
+<meta name="twitter:title" content="算法基础抱佛脚">
+<meta name="twitter:description" content="马上得找工作了感觉慌得一逼，感觉这段时间都在研究各种理论上的东西，工程上各种基础的代码能力都比不上本科的时候了，赶紧跟着 Stanford 的 CS97SI 补一补，临时抱抱佛脚。">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>算法基础抱抱佛脚 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>算法基础抱佛脚 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">算法基础抱抱佛脚</h1>
+          <h1 class="post-title" itemprop="name headline">算法基础抱佛脚</h1>
         
 
         <div class="post-meta">
@@ -342,7 +342,15 @@
       
 
       
-        
+        <p>马上得找工作了感觉慌得一逼，感觉这段时间都在研究各种理论上的东西，工程上各种基础的代码能力都比不上本科的时候了，赶紧跟着 Stanford 的 CS97SI 补一补，临时抱抱佛脚。</p>
+<a id="more"></a>
+<h2 id="代数问题"><a href="#代数问题" class="headerlink" title="代数问题"></a>代数问题</h2><h3 id="重要的数列和"><a href="#重要的数列和" class="headerlink" title="重要的数列和"></a>重要的数列和</h3><p>平方和立方两个常用数列的和得记住<br>\begin{align}<br>\sum\limits^n_{k=1}k^2 &amp;= \frac{1}{6}n(n+1)(2n+1)\\<br>\sum\limits^n_{k=1}k^3 &amp;= (\frac{1}{2}n(n+1))^2<br>\end{align}</p>
+<h3 id="快速幂运算"><a href="#快速幂运算" class="headerlink" title="快速幂运算"></a>快速幂运算</h3><p>$$<br>a^n=<br>\begin{cases}<br>1&amp; \text{n=0}\\<br>a&amp; \text{n=1}\\<br>(a^{\frac{n}{2}})^2&amp; \text{n%2=0}\\<br>(a^{\frac{n-1}{2}})^2a&amp; \text{n%2=1}<br>\end{cases}<br>$$</p>
+<p>用代码实现一哈<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">fastExp</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">double</span> t = <span class="built_in">pow</span>(a, n/<span class="number">2</span>);</span><br><span class="line">		<span class="keyword">return</span> t * t * <span class="built_in">pow</span>(a, n%<span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>时间复杂度为 $O(\log n)$</p>
+<h2 id="数论问题"><a href="#数论问题" class="headerlink" title="数论问题"></a>数论问题</h2><h3 id="最大公约数-GCD"><a href="#最大公约数-GCD" class="headerlink" title="最大公约数 GCD"></a>最大公约数 GCD</h3><p>最大公约数的计算运用到 gcd 的性质<br>\begin{align}<br>gcd(a,b)&amp;=gcd(a,b-a)\\<br>gcd(a,0)&amp;=a\\<br>gcd(a,b)&amp;=min\{ax+by|x,y\in \mathbb{Z}\}<br>\end{align}<br>因此计算使用欧几里得算法，也就是辗转相除法<br>用代码实现一哈<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (b != <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">int</span> r = a % b;</span><br><span class="line">		a = b;</span><br><span class="line">		b = r;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> a</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>时间复杂度为 $O(\log (a+b))$</p>
+
       
     </div>
     
@@ -438,8 +446,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -529,6 +546,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代数问题"><span class="nav-number">1.</span> <span class="nav-text">代数问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要的数列和"><span class="nav-number">1.1.</span> <span class="nav-text">重要的数列和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速幂运算"><span class="nav-number">1.2.</span> <span class="nav-text">快速幂运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数论问题"><span class="nav-number">2.</span> <span class="nav-text">数论问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最大公约数-GCD"><span class="nav-number">2.1.</span> <span class="nav-text">最大公约数 GCD</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
