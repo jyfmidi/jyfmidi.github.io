@@ -88,9 +88,9 @@
 <meta property="og:description" content="在做智障游戏欢乐鸡夫人的时候，使用了 Unity 动画状态机 State Machine Animator, 尝试了下 Unity 的 AudioSource 的播放，试图把这玩意儿搞得让自己舒服。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jyfmidi.com/happy-mrs-chicken/state-machine-animator.png">
-<meta property="og:image" content="https://jyfmidi.com/fart-inspector.png">
-<meta property="og:image" content="https://jyfmidi.com/add-behaviour.png">
-<meta property="og:updated_time" content="2019-01-28T17:37:44.787Z">
+<meta property="og:image" content="https://jyfmidi.com/happy-mrs-chicken/fart-inspector.png">
+<meta property="og:image" content="https://jyfmidi.com/happy-mrs-chicken/add-behaviour.png">
+<meta property="og:updated_time" content="2019-02-08T19:41:10.203Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity 动画状态机中的音频播放尝试">
 <meta name="twitter:description" content="在做智障游戏欢乐鸡夫人的时候，使用了 Unity 动画状态机 State Machine Animator, 尝试了下 Unity 的 AudioSource 的播放，试图把这玩意儿搞得让自己舒服。">
@@ -363,8 +363,10 @@
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChikenController</span> :</span> MonoBehaviour &#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="comment">//放屁相关成员变量</span></span><br><span class="line">	<span class="keyword">public</span> AudioSource[] fart;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">bool</span> bonus;</span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Update</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (...) &#123;</span><br><span class="line">			...</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (state == ChikenState.egging) &#123;</span><br><span class="line">			Egg ();</span><br><span class="line">		&#125; ...</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Egg</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">		...</span><br><span class="line">		<span class="keyword">int</span> fartIndex = bonus ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">		fart [fartIndex].Play ();</span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="方法-2-状态机控制"><a href="#方法-2-状态机控制" class="headerlink" title="方法 2: 状态机控制"></a>方法 2: 状态机控制</h2><p>在 Animator 中，可以为每一个状态附加上一个 Behaviour 脚本。这样，当切换到该状态的时候，就可以根据<br><a href="https://docs.unity3d.com/ScriptReference/StateMachineBehaviour.html" target="_blank" rel="noopener">Unity StateMachineBehaviour 文档</a> 中描述的函数，自动执行脚本。</p>
-<p>因为 Unity 中 AudioSource 不能脱离 GameObject 存在，所以为每一个 AudioSource 找一个 GameObject 载体，挂上去后制作成 Prefab。<br><img src="fart-inspector.png" alt=""></p>
-<p>然后在 Animator 状态机需要播放声音的状态中，点击 Add Behaviour 增加 StateMachineBehaviour 脚本。在这里我需要在每一只鸡进入生蛋状态的时候执行放屁脚本。<br><img src="add-behaviour.png" alt=""></p>
+<p>因为 Unity 中 AudioSource 不能脱离 GameObject 存在，所以为每一个 AudioSource 找一个 GameObject 载体，挂上去后制作成 Prefab。</p>
+<p><img src="happy-mrs-chicken/fart-inspector.png" alt=""></p>
+<p>然后在 Animator 状态机需要播放声音的状态中，点击 Add Behaviour 增加 StateMachineBehaviour 脚本。在这里我需要在每一只鸡进入生蛋状态的时候执行放屁脚本。</p>
+<p><img src="happy-mrs-chicken/add-behaviour.png" alt=""></p>
 <p>在脚本中要注意的是，由于 AudioSource 是挂在 Obj 上被脚本引用，所以在执行脚本的时候，Obj 还不存在。因此我们无法向之前一样直接获取 Component，这里 <strong>一定要实例化 Obj</strong>，再从实例化后的 Obj 中获取 Component，否则执行的时候会报 <strong>Cannot play inactive sound</strong> 的错。然后离开状态的时候要记得清除掉实例。</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LayBehaviour</span> : <span class="title">StateMachineBehaviour</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> GameObject smallFartAudioObj;</span><br><span class="line">	<span class="keyword">public</span> GameObject bigFartAudioObj;</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">bool</span> bonus;</span><br><span class="line">	<span class="keyword">private</span> GameObject fartAudioObjInstance;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnStateEnter</span>(<span class="params">Animator animator,</span></span></span><br><span class="line"><span class="function"><span class="params">	 AnimatorStateInfo stateInfo, </span></span></span><br><span class="line"><span class="function"><span class="params">	 <span class="keyword">int</span> layerIndex</span>)</span> &#123;</span><br><span class="line">		...</span><br><span class="line">		<span class="keyword">if</span> (bonus == <span class="literal">false</span>) &#123;</span><br><span class="line">			<span class="comment">// Important</span></span><br><span class="line">			fartAudioObjInstance = Instantiate (smallFartAudioObj);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			fartAudioObjInstance = Instantiate (bigFartAudioObj);</span><br><span class="line">		&#125;</span><br><span class="line">		AudioSource fart = fartAudioObjInstance.GetComponent&lt;AudioSource&gt;();</span><br><span class="line">		fart.Play ();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">override</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnStateExit</span>(<span class="params">Animator animator,</span></span></span><br><span class="line"><span class="function"><span class="params">	 AnimatorStateInfo stateInfo, </span></span></span><br><span class="line"><span class="function"><span class="params">	 <span class="keyword">int</span> layerIndex</span>)</span> &#123;</span><br><span class="line">		Destroy (fartAudioObjInstance);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="方法-3-事件系统控制"><a href="#方法-3-事件系统控制" class="headerlink" title="方法 3: 事件系统控制"></a>方法 3: 事件系统控制</h2><p>未完待续</p>
@@ -491,7 +493,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -502,7 +504,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -513,7 +515,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

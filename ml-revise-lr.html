@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="心灵的国王">
 <meta property="og:description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://jyfmidi.com/prior.png">
-<meta property="og:image" content="https://jyfmidi.com/posterior.jpg">
-<meta property="og:updated_time" content="2019-02-07T14:37:59.744Z">
+<meta property="og:image" content="https://jyfmidi.com/ml-revise-lr/prior.png">
+<meta property="og:image" content="https://jyfmidi.com/ml-revise-lr/posterior.jpg">
+<meta property="og:updated_time" content="2019-02-08T19:43:03.263Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性回归要搞搞清楚">
 <meta name="twitter:description" content="然后见识到了很多特定的分布后，我们就有足够的工具来从数据中学习简单模型了，那最简单的机器学习模型之一就是线性回归。而且感觉线性回归是后面很多模型的爸爸，万变不离其宗。搞清楚线性回归，就有了孙悟空的火眼金睛，什么妖孽都不怕。说到孙悟空，就想到今年中美合作……文体两开花……多多支持……">
-<meta name="twitter:image" content="https://jyfmidi.com/prior.png">
+<meta name="twitter:image" content="https://jyfmidi.com/ml-revise-lr/prior.png">
 
 
 
@@ -380,12 +380,12 @@
 <h3 id="一个具体的应用实例"><a href="#一个具体的应用实例" class="headerlink" title="一个具体的应用实例"></a>一个具体的应用实例</h3><p>那么现在就在具体的模型中实践线性回归，使用最简单的线性模型，模型设置如下<br>\begin{align}<br>y_i &amp;= w_0x_i+w_1+\epsilon\\<br>x &amp;= [-1,-0.99,\ldots,0.99,1]\\<br>\epsilon &amp;= \mathcal{N}(0,0.3)\\<br>W &amp;= [-1.3,0.5]<br>\end{align} </p>
 <p>首先基于以上信息，生成观察数据集 $D=((x_0,y_0),\ldots,(x_{100},y_{100}))$，这个数据集中的 $y$ 在生成的时候会与真实值有 $\epsilon$ 的误差，那我们的目的就是从观察数据集中能够学习出尽可能和真实值 $W$ 接近的后验 $W_N$。</p>
 <p>为了让后验能够出现比较熟悉的高斯分布，以及考虑到尽可能简化模型，我们假设共轭先验为<strong>零均值各向同性 Zero Mean Isotropic</strong> 二维高斯分布 $\mathcal{N}(W|(0,0),I)$。以两个线性参数 $w_0$ 和 $w_1$ 为底面坐标轴，可能共现的概率为纵轴，三维空间的高斯先验就长这样，底面的圈圈是等高线图</p>
-<div style="width: 50%; margin: auto"><br><img src="prior.png" alt=""><br></div>
+<div style="width: 50%; margin: auto"><br><img src="ml-revise-lr/prior.png" alt=""><br></div>
 
 <p>然后我们获取后验的方法就是，依据先验的高斯分布进行参数 $W$ 的采样，采样结果是一组先验参数 $W_0=(w_0,w_1)$，然后就可以使用线性回归计算出后验。后验也是一个高斯分布，$p(W|X,Y)\sim \mathcal{N}(W|m_N,S_N)$，其中<br>\begin{align}<br>Y &amp;= W^TX\\<br>S_N&amp;=(X^TX+I)^{-1}\\<br>m_N&amp;=(X^YX+I)^{-1}(X^TY+W_0)<br>\end{align}<br>获取了后验之后，我们就更新了自己对于模型的认知，也就是说，$W$ 的分布基于后验参数发生了变化，但是由于高斯相似性，新的后验分布还是一个二维高斯分布。</p>
 <p>那么其实之后的步骤就呼之欲出了，我们从先验采样一个点，根据线性回归得出了后验，这是第一次迭代；那现在我们<strong>第一次迭代的后验</strong>就成为了我们<strong>第二次迭代的先验</strong>，再次从这次的先验采样一个点，根据线性回归得出新的后验，这样循环往复，就逐渐逼近了真实的 $W$ 值。</p>
 <p>为了直观感受这一逐渐趋向真实值的过程，我们进行多次迭代。每次得出后验后，先画出后验高斯分布的形状，都在在后验参数分布上多次进行 $W$ 的采样，采样的结果是多组 $W_N$ 的值，根据这些采样的参数作出相应的直线 $y_N=W_N^TX$。这样获得的结果就是下面这样</p>
-<div style="width: 100%; margin: auto"><br><img src="posterior.jpg" alt=""><br></div>
+<div style="width: 100%; margin: auto"><br><img src="ml-revise-lr/posterior.jpg" alt=""><br></div>
 
 <p>可以看到，每次获得新的后验分布还是一个二维高斯分布，只不过形状发生了改变。直观地看，“山峰”变高了，而“山底”变窄了。这里的“山峰”指的就是整个分布中最可能出现的一组 $(w_0,w_1)$ 出现的概率，而“山底”代表了<strong>我们置信度的边缘</strong>，因为只有出现在“山上”的参数组，才是<strong>我们认为可能为真的参数组</strong>，因此在“平原”上的坐标都是我们不关心的，因为这些地方都是方差过大的地方，我们认为这些地方的概率太低了。因此，在不断获得新的后验的过程中，<strong>我们对于某一区域存在真实值这一事件更确定了，而这个存在真实值的区域的范围正被我们不断缩小</strong>。并且可以从图中看出，山峰的位置逐渐趋于真实值 $W=[-1.3,0.5]$</p>
 <p>这从采样直线的样子也可以看出，随着迭代次数的增加，采样出的直线 $y_N=W_N^TX$ 的斜率也逐渐趋同，或者说逐渐趋于真实值 $W=[-1.3,0.5]$</p>
@@ -512,7 +512,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -523,7 +523,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -534,7 +534,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
