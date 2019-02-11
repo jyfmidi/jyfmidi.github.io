@@ -2,7 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jyfmidi.com/compuNero-firstOrderDiff.html</loc>
-    <lastmod>2019-02-08</lastmod>
+    <lastmod>2019-02-11</lastmod>
+  </url>  <url>
+    <loc>https://jyfmidi.com/graphics-raytracing.html</loc>
+    <lastmod>2019-02-11</lastmod>
   </url>  <url>
     <loc>https://jyfmidi.com/bio-neural-network.html</loc>
     <lastmod>2019-02-08</lastmod>
@@ -29,9 +32,6 @@
     <lastmod>2019-02-08</lastmod>
   </url>  <url>
     <loc>https://jyfmidi.com/ml-revise-gp.html</loc>
-    <lastmod>2019-02-08</lastmod>
-  </url>  <url>
-    <loc>https://jyfmidi.com/graphics-raytracing.html</loc>
     <lastmod>2019-02-08</lastmod>
   </url>  <url>
     <loc>https://jyfmidi.com/algo-dp.html</loc>

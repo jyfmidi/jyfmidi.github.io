@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="心灵的国王">
 <meta property="og:description" content="图像编码 自带索引的图片文件 使用真色的图片">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-08T13:11:22.099Z">
+<meta property="og:updated_time" content="2019-02-11T09:56:14.774Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="光线追踪">
 <meta name="twitter:description" content="图像编码 自带索引的图片文件 使用真色的图片">
@@ -351,7 +351,7 @@
 <h2 id="参数化"><a href="#参数化" class="headerlink" title="参数化"></a>参数化</h2><h3 id="环境参数"><a href="#环境参数" class="headerlink" title="环境参数"></a>环境参数</h3><p>三角面片</p>
 <ul>
 <li>确保平面</li>
-<li>只需要坐标点和 normal 向量</li>
+<li>只需要坐标点和法向量</li>
 </ul>
 <p>体素</p>
 <p>假设</p>
@@ -379,8 +379,44 @@
 <li>所有的平面都是漫反射面（每个角度都一样）</li>
 <li>光都是点光源（否则会产生软阴影）</li>
 </ul>
-<h3 id="相机"><a href="#相机" class="headerlink" title="相机"></a>相机</h3><p>假设没有光圈 - 没有背景虚化</p>
+<h3 id="相机"><a href="#相机" class="headerlink" title="相机"></a>相机</h3><p>假设针孔相机，没有光圈 - 没有背景虚化</p>
 <h2 id="光线追踪"><a href="#光线追踪" class="headerlink" title="光线追踪"></a>光线追踪</h2><p>instead of 从光源追踪，从视觉追踪</p>
+<p>方程</p>
+<ul>
+<li>相机原点</li>
+<li>z 的范围</li>
+<li>映射到图像平面</li>
+<li>正规化</li>
+<li>参数化光线</li>
+</ul>
+<h3 id="三角面片光线追踪"><a href="#三角面片光线追踪" class="headerlink" title="三角面片光线追踪"></a>三角面片光线追踪</h3><p>找到两个向量 $e_0$ $e_1$<br>\begin{align}<br>e_0 &amp;= v_1-v_0 \\<br>e_1 &amp;= v_2-v_1<br>\end{align}</p>
+<p>平面上的点就可以用向量线性表出<br>$$<br>r=v_0+ue_0+ve_1<br>$$<br>之前得出光线的方程<br>$$<br>r_{ij}=s+t\cdot d_{ij}<br>$$<br>两边相等<br>\begin{align}<br>s+t\cdot d_{ij}&amp;=v_0+ue_0+ve_1\\\<br>s-v_0&amp;=-t\cdot d_{ij}+ue_0+ve_1<br>\end{align}</p>
+<h3 id="球面光线追踪方程"><a href="#球面光线追踪方程" class="headerlink" title="球面光线追踪方程"></a>球面光线追踪方程</h3><p>$$<br>t=-d^T(s-c)\pm \sqrt{(d^T(s-c))^2-(s-c)^T(s-c)-r^2}<br>$$</p>
+<h2 id="光照-1"><a href="#光照-1" class="headerlink" title="光照"></a>光照</h2><ul>
+<li>平面性质<ul>
+<li>材质</li>
+<li>环境</li>
+<li>方向</li>
+</ul>
+</li>
+<li>光的性质</li>
+<li>方向</li>
+</ul>
+<h3 id="光照计算"><a href="#光照计算" class="headerlink" title="光照计算"></a>光照计算</h3><p>计算法向量<br>\begin{align}<br>e_0 &amp;= v_1-v_0 \\<br>e_1 &amp;= v_2-v_1 \\<br>n &amp;= e_0 \times e_1<br>\end{align}</p>
+<p>计算反射光<br>$$<br>r = 2(n^TI)n-I<br>$$</p>
+<p>根据 Snell 原理计算折射<br>$$<br>n_1\sin(\theta_1)=n_2\sin(\theta_2)<br>$$</p>
+<h3 id="平面材质"><a href="#平面材质" class="headerlink" title="平面材质"></a>平面材质</h3><p>镜面: 完全反射<br>Glossy: 由于平面的缺陷，光线反射发生随机抖动<br>漫反射平面: 由于物体内部的结构，反射光与入射角的角度无关</p>
+<p>漫反射渲染需要计算 foreshortening term<br>$dA$ 是真实尺寸 $dL$ 是渲染尺寸</p>
+<h2 id="光线性质"><a href="#光线性质" class="headerlink" title="光线性质"></a>光线性质</h2><p>光线渲染分为</p>
+<ul>
+<li>镜像光 Specular</li>
+<li>漫反射光 Diffuse</li>
+<li>环境光 Ambient</li>
+</ul>
+<p>$$<br>I_{tot}=f(I_{spec}+I_{diff}+I_{amb})<br>$$</p>
+<p>Hadamard 乘</p>
+<p>镜像光: Phong 模型</p>
+<p>距离衰减</p>
 
       
     </div>
@@ -587,7 +623,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像编码"><span class="nav-number">1.</span> <span class="nav-text">图像编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数化"><span class="nav-number">2.</span> <span class="nav-text">参数化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境参数"><span class="nav-number">2.1.</span> <span class="nav-text">环境参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#光照"><span class="nav-number">2.2.</span> <span class="nav-text">光照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相机"><span class="nav-number">2.3.</span> <span class="nav-text">相机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光线追踪"><span class="nav-number">3.</span> <span class="nav-text">光线追踪</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像编码"><span class="nav-number">1.</span> <span class="nav-text">图像编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数化"><span class="nav-number">2.</span> <span class="nav-text">参数化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境参数"><span class="nav-number">2.1.</span> <span class="nav-text">环境参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#光照"><span class="nav-number">2.2.</span> <span class="nav-text">光照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相机"><span class="nav-number">2.3.</span> <span class="nav-text">相机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光线追踪"><span class="nav-number">3.</span> <span class="nav-text">光线追踪</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三角面片光线追踪"><span class="nav-number">3.1.</span> <span class="nav-text">三角面片光线追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#球面光线追踪方程"><span class="nav-number">3.2.</span> <span class="nav-text">球面光线追踪方程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光照-1"><span class="nav-number">4.</span> <span class="nav-text">光照</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#光照计算"><span class="nav-number">4.1.</span> <span class="nav-text">光照计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平面材质"><span class="nav-number">4.2.</span> <span class="nav-text">平面材质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光线性质"><span class="nav-number">5.</span> <span class="nav-text">光线性质</span></a></li></ol></div>
             
 
           </div>
