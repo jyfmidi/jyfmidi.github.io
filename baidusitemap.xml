@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jyfmidi.com/compuNero-firstOrderDiff.html</loc>
-    <lastmod>2019-02-11</lastmod>
+    <loc>https://jyfmidi.com/graphics-light.html</loc>
+    <lastmod>2019-02-15</lastmod>
   </url>  <url>
     <loc>https://jyfmidi.com/graphics-raytracing.html</loc>
+    <lastmod>2019-02-15</lastmod>
+  </url>  <url>
+    <loc>https://jyfmidi.com/compuNero-firstOrderDiff.html</loc>
+    <lastmod>2019-02-15</lastmod>
+  </url>  <url>
+    <loc>https://jyfmidi.com/graphics-transform.html</loc>
+    <lastmod>2019-02-14</lastmod>
+  </url>  <url>
+    <loc>https://jyfmidi.com/bio-artificial-evolution.html</loc>
     <lastmod>2019-02-11</lastmod>
   </url>  <url>
     <loc>https://jyfmidi.com/bio-neural-network.html</loc>

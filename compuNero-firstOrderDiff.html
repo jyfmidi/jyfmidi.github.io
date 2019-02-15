@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="心灵的国王">
 <meta property="og:description" content="这部分明明感觉很重要，但不知道为啥老师上课推导简直跟飞一样，赶着去吃饭么……课下赶紧抽时间稍微看看，跟着推一推整理一下，万一以后要用到的话也能稍微留一个印象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-11T10:31:08.672Z">
+<meta property="og:updated_time" content="2019-02-15T00:16:35.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="神经科学一阶微分方程">
 <meta name="twitter:description" content="这部分明明感觉很重要，但不知道为啥老师上课推导简直跟飞一样，赶着去吃饭么……课下赶紧抽时间稍微看看，跟着推一推整理一下，万一以后要用到的话也能稍微留一个印象">
@@ -346,7 +346,8 @@
 <a id="more"></a>
 <p>在神经科学中，最常用的微分方程是一阶微分方程<br>$$<br>\tau \frac{df}{dt}=g(t)-f(t)<br>$$<br>其中 $f(t)$ 是我们关心的关于 $t$ 的方程，$g(t)$ 是外部刺激函数，$\tau$ 是有关时间窗口的常量。</p>
 <p>为了解这个方程，使用一个积分因式来简化方程<br>$$<br>\lambda=e^{\frac{t}{\tau}}<br>$$<br>两侧乘上因式，将原方程进行变形<br>$$<br>\frac{df}{dt}e^{t/\tau}+\frac{1}{\tau}fe^{t/\tau}=\frac{1}{\tau}g(t)e^{t/\tau}<br>$$<br>然后这个时候聪明的小孩就会发现，等式左边其实是一个乘式的微分<br>$$<br>\frac{df}{dt}e^{t/\tau}+\frac{1}{\tau}fe^{t/\tau} = \frac{d}{dt}(e^{t/\tau}f)<br>$$<br>因此就可以简化原方程左侧为一项<br>$$<br>\frac{d}{dt}(e^{t/\tau}f)=\frac{1}{\tau}g(t)e^{t/\tau}<br>$$<br>那这次把等式两侧同时积分<br>$$<br>\int \frac{d}{dt}fe^{t/\tau}dt = \int \frac{1}{\tau}g(t)e^{t/\tau}dt<br>$$<br>聪明的小孩会知道 $e$ 指数的积分形式<br>$$<br>\frac{d}{dt}e^{at}=ae^{at}<br>$$<br>所以等式就变成了<br>$$<br>fe^{t/\tau}=\int^{t}_{0}\frac{1}{\tau}g(s)e^{s/\tau}ds+C<br>$$<br>这样就可以把 $f$ 解出来<br>$$<br>f(t)=e^{-t/\tau}\int^t_0\frac{1}{\tau}g(s)e^{s/\tau}ds + Ce^{-t/\tau}<br>$$<br>特殊点来看更直观<br>\begin{align}<br>f(0)&amp;=0+Ce^0 = C\\<br>f(1)&amp;=\frac{1}{\tau}e^{-1/\tau}\int^1_0g(s)e^{s/\tau}ds+f(0)e^{-1/\tau}<br>\end{align}</p>
-<p>这样 $f(t) 就被表现为了一个积分的形式，求出积分就解出了方程。那最简单的当然是 $g(t)=\bar{g}$</p>
+<p>这样 $f(t)$ 就被表现为了一个积分的形式，而积分中的 $C=f(0)$。此时求出积分就解出了方程。那最简单的当然是 $g(t)=\bar{g}$ 为一个常数的时候，此时 $f(t)$ 变为<br>\begin{align}<br>f(t)&amp;=\bar{g}(\frac{1}{\tau}e^{-t/\tau}\int^t_0e^{s/\tau}ds)+f(0)e^{-t/\tau}\\<br>&amp;=\bar{g}(\frac{1}{\tau}e^{-t/\tau}\cdot \tau e_{s/\tau}|^t_0)+f(0)e^{-t/\tau}\\<br>&amp;=\bar{g}(\frac{1}{\tau}e^{-t/\tau}\cdot \tau(e^{t/\tau}-1))+f(0)e^{-t/\tau}\\<br>&amp;=\bar{g}(1-e^{-t/\tau})+f(0)e^{-t/\tau}\\<br>&amp;=\bar{g}+(f(0)-\bar{g})e^{-t/\tau}<br>\end{align}<br>而我们有</p>
+<p>$$<br>\tau \frac{df}{dt} = \bar{g}-f(t)<br>$$</p>
 
       
     </div>
@@ -381,8 +382,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/graphics-raytracing.html" rel="next" title="光线追踪">
-                <i class="fa fa-chevron-left"></i> 光线追踪
+              <a href="/graphics-transform.html" rel="next" title="图形学中物体的坐标变换">
+                <i class="fa fa-chevron-left"></i> 图形学中物体的坐标变换
               </a>
             
           </div>
@@ -390,6 +391,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/bio-artificial-evolution.html" rel="prev" title="人工物种演化与遗传算法">
+                人工物种演化与遗传算法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -459,7 +464,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -481,7 +486,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
