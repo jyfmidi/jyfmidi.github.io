@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="学习,图形学,线性代数,">
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="然后就开始搞各种光照了，光照的渲染也是现在图形学一个很热门的研究方向。光照的最重要的作用就是为了塑造真实感，物体的材质都需要用光照体现，超级重要的！">
+<meta name="keywords" content="学习,图形学,线性代数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图形学的各种光照模型">
 <meta property="og:url" content="https://jyfmidi.com/graphics-light.html">
@@ -88,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jyfmidi.com/graphics-light/reflect.png">
 <meta property="og:image" content="https://jyfmidi.com/graphics-light/foreshortening.png">
-<meta property="og:updated_time" content="2019-02-15T11:48:31.855Z">
+<meta property="og:updated_time" content="2019-02-16T13:37:06.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图形学的各种光照模型">
 <meta name="twitter:description" content="然后就开始搞各种光照了，光照的渲染也是现在图形学一个很热门的研究方向。光照的最重要的作用就是为了塑造真实感，物体的材质都需要用光照体现，超级重要的！">
@@ -295,6 +296,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机图形学/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机图形学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -322,7 +345,7 @@
       
 
       
-        <p>然后就开始搞各种光照了，光照的渲染也是现在图形学一个很热门的研究方向。光照的最重要的作用就是为了塑造真实感，物体的材质都需要用光照体现，超级重要的！<br><a id="more"></a></p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>然后就开始搞各种光照了，光照的渲染也是现在图形学一个很热门的研究方向。光照的最重要的作用就是为了塑造真实感，物体的材质都需要用光照体现，超级重要的！<br><a id="more"></a></p>
 <h2 id="光照计算"><a href="#光照计算" class="headerlink" title="光照计算"></a>光照计算</h2><p>计算面片的法向量<br>\begin{align}<br>e_0 &amp;= v_1-v_0 \\<br>e_1 &amp;= v_2-v_1 \\<br>n &amp;= e_0 \times e_1<br>\end{align}</p>
 <h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><p>计算反射光，假设入射光向量为 $l$，反射光向量为 $r$<br><img src="graphics-light/reflect.png" alt=""><br>则入射光在法线上的投影的长度（标量）就是<br>$$<br>n^Tl = |n||l|\cos\theta_l<br>$$<br>入射光关于原点的中心对称是 $-l$，通过相似三角形的几何关系可以知道，$-l$ 的顶点到 $r$ 的顶点的距离为 $2n^Tl$，那么 $-l$ 的顶点到 $r$ 的顶点的向量就是 $(2n^Tl)\cdot n$<br>那么我们就有<br>\begin{align}<br>-l + r &amp;= (2n^TI)n\\<br>r &amp;= 2(n^TI)n-l\\<br>\end{align}</p>
 <h3 id="折射"><a href="#折射" class="headerlink" title="折射"></a>折射</h3><p>根据 Snell 原理计算折射<br>$$<br>n_1\sin(\theta_1)=n_2\sin(\theta_2)<br>$$</p>
@@ -341,9 +364,13 @@
 <p>计算光照的时候需要把三种光加起来<br>$$<br>I_{tot}=f(I_{spec}+I_{diff}+I_{amb})<br>$$</p>
 <p>光照计算使用到 Hadamard 乘，表示为<br>\begin{align}<br>a &amp;= b \circ c\\<br>(a)_i &amp;= (b)_i \cdot (c)_i<br>\end{align}</p>
 <p>在光照计算方程中，$s$ 表示光强，$m$ 表示材料属性，$i$ 表示反射光的颜色</p>
-<p>镜像光: Phong 模型</p>
-<p>距离衰减</p>
-
+<p>漫反射光: Lambertian 表面<br>$$<br>i_{diff}=max(0,n^Tl)m_{diff}\circ s_{diff}<br>$$</p>
+<p>镜像光: Phong 模型<br>$$<br>i_{spec}=(r^Tv)^{m_{shi}}m_{spec}\circ s_{spec}<br>$$</p>
+<p>环境光<br>$$<br>i_{amb} = m_{amb}\circ s_{amb}<br>$$</p>
+<p>距离衰减<br>\begin{align}<br>d&amp;=(s_c+s_l\cdot r+s_q\cdot r^2)^{-1}\\<br>r&amp;=((s_{pos}-p)^T(s_{pos}-p))^{\frac{1}{2}}<br>\end{align}</p>
+<p>双向反射分布方程 BRDF<br>$$<br>f(L,V)<br>$$<br>能量守恒<br>$$<br>\int f(L,V)dL dV = 1<br>$$<br>Helmholtz reciprocity<br>$$<br>f(L,V) = f(V,L)<br>$$</p>
+<p>双向扩散平面反射分布方程 BRSSDF</p>
+<h3 id="法向量贴图"><a href="#法向量贴图" class="headerlink" title="法向量贴图"></a>法向量贴图</h3><h3 id="天空盒：环境贴图"><a href="#天空盒：环境贴图" class="headerlink" title="天空盒：环境贴图"></a>天空盒：环境贴图</h3>
       
     </div>
     
@@ -357,6 +384,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"><i class="fa fa-tag"></i> 学习</a>
+          
+            <a href="/tags/图形学/" rel="tag"><i class="fa fa-tag"></i> 图形学</a>
+          
+            <a href="/tags/线性代数/" rel="tag"><i class="fa fa-tag"></i> 线性代数</a>
+          
+        </div>
       
 
       
@@ -376,6 +413,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/genomics-prologue.html" rel="prev" title="计算基因学读书笔记 0：赞美细胞吧">
+                计算基因学读书笔记 0：赞美细胞吧 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -454,7 +495,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -465,7 +506,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -476,7 +517,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -537,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#光照计算"><span class="nav-number">1.</span> <span class="nav-text">光照计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">1.1.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折射"><span class="nav-number">1.2.</span> <span class="nav-text">折射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光照性质"><span class="nav-number">2.</span> <span class="nav-text">光照性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平面材质"><span class="nav-number">2.1.</span> <span class="nav-text">平面材质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#光源性质"><span class="nav-number">2.2.</span> <span class="nav-text">光源性质</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#光照计算"><span class="nav-number">1.</span> <span class="nav-text">光照计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">1.1.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折射"><span class="nav-number">1.2.</span> <span class="nav-text">折射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光照性质"><span class="nav-number">2.</span> <span class="nav-text">光照性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平面材质"><span class="nav-number">2.1.</span> <span class="nav-text">平面材质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#光源性质"><span class="nav-number">2.2.</span> <span class="nav-text">光源性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法向量贴图"><span class="nav-number">2.3.</span> <span class="nav-text">法向量贴图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#天空盒：环境贴图"><span class="nav-number">2.4.</span> <span class="nav-text">天空盒：环境贴图</span></a></li></ol></li></ol></div>
             
 
           </div>

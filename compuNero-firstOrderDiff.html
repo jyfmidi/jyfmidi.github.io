@@ -342,7 +342,7 @@
       
 
       
-        <p>这部分明明感觉很重要，但不知道为啥老师上课推导简直跟飞一样，赶着去吃饭么……课下赶紧抽时间稍微看看，跟着推一推整理一下，万一以后要用到的话也能稍微留一个印象</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>这部分明明感觉很重要，但不知道为啥老师上课推导简直跟飞一样，赶着去吃饭么……课下赶紧抽时间稍微看看，跟着推一推整理一下，万一以后要用到的话也能稍微留一个印象</p>
 <a id="more"></a>
 <p>在神经科学中，最常用的微分方程是一阶微分方程<br>$$<br>\tau \frac{df}{dt}=g(t)-f(t)<br>$$<br>其中 $f(t)$ 是我们关心的关于 $t$ 的方程，$g(t)$ 是外部刺激函数，$\tau$ 是有关时间窗口的常量。</p>
 <p>为了解这个方程，使用一个积分因式来简化方程<br>$$<br>\lambda=e^{\frac{t}{\tau}}<br>$$<br>两侧乘上因式，将原方程进行变形<br>$$<br>\frac{df}{dt}e^{t/\tau}+\frac{1}{\tau}fe^{t/\tau}=\frac{1}{\tau}g(t)e^{t/\tau}<br>$$<br>然后这个时候聪明的小孩就会发现，等式左边其实是一个乘式的微分<br>$$<br>\frac{df}{dt}e^{t/\tau}+\frac{1}{\tau}fe^{t/\tau} = \frac{d}{dt}(e^{t/\tau}f)<br>$$<br>因此就可以简化原方程左侧为一项<br>$$<br>\frac{d}{dt}(e^{t/\tau}f)=\frac{1}{\tau}g(t)e^{t/\tau}<br>$$<br>那这次把等式两侧同时积分<br>$$<br>\int \frac{d}{dt}fe^{t/\tau}dt = \int \frac{1}{\tau}g(t)e^{t/\tau}dt<br>$$<br>聪明的小孩会知道 $e$ 指数的积分形式<br>$$<br>\frac{d}{dt}e^{at}=ae^{at}<br>$$<br>所以等式就变成了<br>$$<br>fe^{t/\tau}=\int^{t}_{0}\frac{1}{\tau}g(s)e^{s/\tau}ds+C<br>$$<br>这样就可以把 $f$ 解出来<br>$$<br>f(t)=e^{-t/\tau}\int^t_0\frac{1}{\tau}g(s)e^{s/\tau}ds + Ce^{-t/\tau}<br>$$<br>特殊点来看更直观<br>\begin{align}<br>f(0)&amp;=0+Ce^0 = C\\<br>f(1)&amp;=\frac{1}{\tau}e^{-1/\tau}\int^1_0g(s)e^{s/\tau}ds+f(0)e^{-1/\tau}<br>\end{align}</p>
@@ -464,7 +464,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -475,7 +475,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -486,7 +486,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

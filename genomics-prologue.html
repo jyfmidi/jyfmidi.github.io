@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="学习,图形学,线性代数,">
+  <meta name="keywords" content="学习,生物信息学,读书,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="图形学里经常需要对物体进行变形操作，变形后物体坐标的计算涉及到一系列计算。本来线性代数就不好，更得好好理解。">
-<meta name="keywords" content="学习,图形学,线性代数">
+<meta name="description" content="细胞如何工作 何为基因型 Genome 生物学的未来：计算生物学">
+<meta name="keywords" content="学习,生物信息学,读书">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图形学中物体的坐标变换">
-<meta property="og:url" content="https://jyfmidi.com/graphics-transform.html">
+<meta property="og:title" content="计算基因学读书笔记 0：赞美细胞吧">
+<meta property="og:url" content="https://jyfmidi.com/genomics-prologue.html">
 <meta property="og:site_name" content="心灵的国王">
-<meta property="og:description" content="图形学里经常需要对物体进行变形操作，变形后物体坐标的计算涉及到一系列计算。本来线性代数就不好，更得好好理解。">
+<meta property="og:description" content="细胞如何工作 何为基因型 Genome 生物学的未来：计算生物学">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-14T23:04:11.271Z">
+<meta property="og:updated_time" content="2019-02-16T15:01:33.053Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图形学中物体的坐标变换">
-<meta name="twitter:description" content="图形学里经常需要对物体进行变形操作，变形后物体坐标的计算涉及到一系列计算。本来线性代数就不好，更得好好理解。">
+<meta name="twitter:title" content="计算基因学读书笔记 0：赞美细胞吧">
+<meta name="twitter:description" content="细胞如何工作 何为基因型 Genome 生物学的未来：计算生物学">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://jyfmidi.com/graphics-transform.html">
+  <link rel="canonical" href="https://jyfmidi.com/genomics-prologue.html">
 
 
 
 
 
-  <title>图形学中物体的坐标变换 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>计算基因学读书笔记 0：赞美细胞吧 | 心灵的国王</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jyfmidi.com/graphics-transform.html">
+    <link itemprop="mainEntityOfPage" href="https://jyfmidi.com/genomics-prologue.html">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jyfmidi">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">图形学中物体的坐标变换</h1>
+          <h1 class="post-title" itemprop="name headline">计算基因学读书笔记 0：赞美细胞吧</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-08T12:12:37+00:00">
-                2019-02-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-16T13:32:00+00:00">
+                2019-02-16
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/计算机图形学/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机图形学</span>
+                  <a href="/categories/生物信息学/" itemprop="url" rel="index">
+                    <span itemprop="name">生物信息学</span>
                   </a>
                 </span>
 
@@ -342,15 +342,43 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>图形学里经常需要对物体进行变形操作，变形后物体坐标的计算涉及到一系列计算。本来线性代数就不好，更得好好理解。<br><a id="more"></a></p>
-<h2 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h2><p>在向量空间中的点通过初始坐标 $\left[ x, y, z\right]^T$ 与一组基向量 $\left[ e_1, e_2, e_3\right]$ 的乘积表示，各种变形就通过基向量的矩阵相乘表达，这样就变形不会影响物体的初始坐标了<br>$$<br>\left[ \begin{array}{c}<br>x\\<br>y\\<br>z<br>\end{array}<br>\right ]<br>=<br>\left[ \begin{array}{ccc}<br>1 &amp; 0 &amp; 0\\<br>0 &amp; 1 &amp; 0\\<br>0 &amp; 0 &amp; 1<br>\end{array}<br>\right ]<br>\left[ \begin{array}{c}<br>x\\<br>y\\<br>z<br>\end{array}<br>\right ]<br>=<br>\left[ \begin{array}{ccc}<br>e_1&amp;e_2&amp;e_3<br>\end{array}<br>\right ]<br>\left[ \begin{array}{c}<br>x\\<br>y\\<br>z<br>\end{array}<br>\right ]<br>$$</p>
-<h2 id="尺度缩放"><a href="#尺度缩放" class="headerlink" title="尺度缩放"></a>尺度缩放</h2><p>尺度缩放很容易，就是在基向量之前再乘上一个缩放矩阵就可以了，可以表达物体关于中心的压缩和扩张</p>
-<p>$$<br>\left[ \begin{array}{c}<br>x’\\<br>y’\\<br>z’<br>\end{array}<br>\right ]<br>=<br>\left[ \begin{array}{ccc}<br>v_xe_1&amp;v_ye_2&amp;v_ze_3<br>\end{array}<br>\right ]<br>\left[ \begin{array}{c}<br>x\\<br>y\\<br>z<br>\end{array}<br>\right ]<br>=<br>\left[ \begin{array}{ccc}<br>v_x &amp; 0 &amp; 0\\<br>0 &amp; v_y &amp; 0\\<br>0 &amp; 0 &amp; v_z<br>\end{array}<br>\right ]<br>\left[ \begin{array}{ccc}<br>e_1&amp;e_2&amp;e_3<br>\end{array}<br>\right ]<br>\left[ \begin{array}{c}<br>x\\<br>y\\<br>z<br>\end{array}<br>\right ]<br>$$</p>
-<h2 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h2><p>旋转也很简单，跟尺度缩放一样，只需要在基向量前乘上一个旋转矩阵就可以了</p>
-<p>$$<br>\left[<br>\begin{array}{c}<br>x’\\<br>y’\\<br>z’<br>\end{array}<br>\right ]<br>=<br>R<br>\left[<br>\begin{array}{ccc}<br>e_1&amp;e_2&amp;e_3<br>\end{array}<br>\right ]<br>\left[ \begin{array}{c}<br>x\\<br>y\\<br>z<br>\end{array}<br>\right ]<br>$$<br>其中<br>$$<br>R_x(\theta)=<br>\left[<br>\begin{array}{ccc}<br>1&amp;0&amp;0\\<br>0&amp;\cos\theta&amp;-\sin\theta\\<br>0&amp;\sin\theta&amp;\cos\theta<br>\end{array}<br>\right]<br>,<br>R_y(\theta)=<br>\left[<br>\begin{array}{ccc}<br>\cos\theta&amp;0&amp;\sin\theta\\<br>0&amp;1&amp;0\\<br>-\sin\theta&amp;0&amp;\cos\theta<br>\end{array}<br>\right]<br>,<br>R_z(\theta)=<br>\left[<br>\begin{array}{ccc}<br>\cos\theta&amp;-\sin\theta&amp;0\\<br>\sin\theta&amp;\cos\theta&amp;0\\<br>0&amp;0&amp;1<br>\end{array}<br>\right]<br>$$<br>要沿着哪根轴转就乘哪个旋转矩阵就好了，但是要注意矩阵相乘是非对称的 $A\times B\neq B\times A$，所以一定要注意选定相乘的顺序，并在整个工程中固定不变<br>比如按照 $x\rightarrow y\rightarrow z$ 的顺序乘出来的旋转矩阵就是<br>$$<br>R_{xyz}=<br>\left[<br>\begin{array}{ccc}<br>\cos\theta_y\cos\theta_z&amp;-\cos\theta_x\sin\theta_z+\sin\theta_x\sin\theta_y\cos\theta_z&amp;\sin\theta_x\sin\theta_z+\cos\theta_x\sin\theta_y\cos\theta_z\\<br>\cos\theta_y\sin\theta_z&amp;\cos\theta_x\cos\theta_z+\sin\theta_x\sin\theta_y\sin\theta_z&amp;-\sin\theta_x\sin\theta_z+\cos\theta_x\sin\theta_y\sin\theta_z\\<br>-\sin\theta_y&amp;\sin\theta_x\cos\theta_y&amp;\cos\theta_x\cos\theta_y<br>\end{array}<br>\right]<br>$$</p>
-<h2 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h2><p>物体的移动就比较特殊了，因为最直观能想到的方法就是在物体的初始坐标上进行线性平移<br>$$<br>\left[ \begin{array}{c}<br>x’\\<br>y’\\<br>z’<br>\end{array}<br>\right ]<br>=<br>\left[ \begin{array}{ccc}<br>e_1&amp;e_2&amp;e_3<br>\end{array}<br>\right ]<br>\left[ \begin{array}{c}<br>x+dx\\<br>y+dy\\<br>z+dz<br>\end{array}<br>\right ]<br>$$<br>但是如果这么搞，我们就得单独处理物体平移了，不方便<br>所以我们引入 <strong>投影坐标/齐次坐标 Homogeneous Coordinate</strong>，在三维的基础上增加一个维度，将同比例的向量等价起来，就像<br>$$<br>\left[ \begin{array}{c}<br>2\\<br>3\\<br>4<br>\end{array}<br>\right ]<br>～<br>\left[ \begin{array}{c}<br>4\\<br>6\\<br>8<br>\end{array}<br>\right ]<br>$$<br>在齐次坐标中<br>$$<br>\left[ \begin{array}{c}<br>2/4\\<br>3/4\\<br>4/4<br>\end{array}<br>\right ]<br>=<br>\left[ \begin{array}{c}<br>4/8\\<br>6/8\\<br>8/8<br>\end{array}<br>\right ]<br>=<br>\left[ \begin{array}{c}<br>2/4\\<br>3/4\\<br>1<br>\end{array}<br>\right ]<br>$$<br>所以我们的笛卡尔三维坐标系就变为了四维空间的一个投影<br>$$<br>\left[ \begin{array}{c}<br>x\\<br>y\\<br>z<br>\end{array}<br>\right ]<br>=<br>\left[ \begin{array}{c}<br>x\\<br>y\\<br>z\\<br>1<br>\end{array}<br>\right ]<br>$$<br>这样做的另一个好处就是，无穷远处的点也可以方便地表达<br>$$<br>\lim_{d \rightarrow \infty}<br>\left[ \begin{array}{c}<br>x+d\\<br>y+d\\<br>z+d<br>\end{array}<br>\right ]<br>=<br>\left[ \begin{array}{c}<br>x\\<br>y\\<br>z\\<br>0<br>\end{array}<br>\right ]<br>$$</p>
-<p>这样一来，整套物体变形就可以用一个齐次坐标矩阵进行线性变换辽<br>$$<br>\left[ \begin{array}{c}<br>x’\\<br>y’\\<br>z’<br>\end{array}<br>\right ]<br>=<br>\left[ \begin{array}{ccc处　}<br>v_x\cdot R_{11}&amp;R_{12}&amp;R_{13}&amp;dx\\<br>R_{21}&amp;v_y\cdot R_{22}&amp;R_{23}&amp;dy\\<br>R_{31}&amp;R_{32}&amp;v_z\cdot R_{33}&amp;dz\\<br>0&amp;0&amp;0&amp;1<br>\end{array}<br>\right ]<br>\left[ \begin{array}{c}<br>x\\<br>y\\<br>z\\<br>1<br>\end{array}<br>\right ]<br>$$</p>
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><ul>
+<li>细胞如何工作</li>
+<li>何为<strong>基因型 Genome</strong></li>
+<li>生物学的未来：计算生物学</li>
+</ul>
+<a id="more"></a>
+<h2 id="为什么是生物信息学"><a href="#为什么是生物信息学" class="headerlink" title="为什么是生物信息学"></a>为什么是生物信息学</h2><ul>
+<li>现代生物学中，产生了许多全新的问题。只有基于大规模基因数据的生物学研究才能解决。而科学的进步使得这种大规模数据的获取得以实现</li>
+<li>除了科学，文化也在进步，如今计算机科学与统计学的研究人员和生物学家开始了合作，分析数据、为生态系统建立细致的模型</li>
+<li>不久的将来，一种全新的交叉学科，生物信息学就会冉冉升起。该领域的科学家会同时掌握计算机科学、统计、数学、生物学和基因学的知识。如今很多高校已经开始提供这类课程</li>
+<li>本书作为生物信息学的入门书，将生物信息学和计算基因学作为同等的概念，为计算机学的研究者提供生物基础知识</li>
+</ul>
+<h2 id="生物学中的细胞"><a href="#生物学中的细胞" class="headerlink" title="生物学中的细胞"></a>生物学中的细胞</h2><h3 id="生物"><a href="#生物" class="headerlink" title="生物"></a>生物</h3><ul>
+<li>现代生物学对细胞的机理的阐述处于分子层面</li>
+<li>生物学领域充满了各种例外，任何泛化和规律都可能在某些有机体身上不适用</li>
+<li>任何生物的终极目的就是繁衍。生物必须尽快繁殖、探索环境、抢夺资源、击败对手。对于生物数据的分析都基于自然选择的进化论框架</li>
+</ul>
+<h3 id="细胞"><a href="#细胞" class="headerlink" title="细胞"></a>细胞</h3><ul>
+<li>细胞根据有无细胞核，分为<strong>真核细胞 eukaryotic</strong> 和<strong>原核细胞 prokaryotic</strong> 两种基本类型。</li>
+<li>两种细胞的基本机理相同，但是原核生物是更简单的单细胞有机体（细菌），真核生物是更复杂的单细胞或者多细胞有机体（菌类、动植物）</li>
+<li>单细胞生物以及多细胞生物的每个细胞个体，其内部机理是一系列复杂的化学反应，也就是新陈代谢。</li>
+<li>新陈代谢是一系列生化过程，由细胞产生的蛋白质分子驱动。数千种蛋白质各司其职，其中大部分是<strong>酶 enzymes</strong> 。大部分的细胞机制都是为了保证能够在某个时间节点、在某个位置、产生特定量的蛋白质。</li>
+</ul>
+<h3 id="蛋白质"><a href="#蛋白质" class="headerlink" title="蛋白质"></a>蛋白质</h3><ul>
+<li>蛋白质由氨基酸链组成。所有已知的有机物都含有相同的 20 种氨基酸。</li>
+<li>不同的氨基酸序列决定了蛋白质的形状和种类，进一步决定了蛋白质的功能</li>
+<li>每一种蛋白质的“制作指南”都保存在细胞的遗传介质里传给子代</li>
+<li>遗传介质由 DNA 分子组成，DNA 分子中存储信息的单元叫做基因。</li>
+</ul>
+<h2 id="生物学的未来"><a href="#生物学的未来" class="headerlink" title="生物学的未来"></a>生物学的未来</h2><ul>
+<li>有机体的数量和复杂性决定了小规模的实验无法了解有机体交互过程中的细节</li>
+<li>快速自动获取大规模的基因信息保证了生物学的进步</li>
+<li>蛋白质在细胞交互中的作用可以更加细致地进行研究</li>
+<li>基因如何表现为不同生物以及不同个体的差异，以及在遗传中的作用的问题，可以通过对每个个体的遗传介质进行大规模分析来解决</li>
+</ul>
+<h2 id="下期预告"><a href="#下期预告" class="headerlink" title="下期预告"></a>下期预告</h2><p>第一章将会以流感嗜血杆菌为例介绍基因组的主要特征。并介绍如何获取基因组的数据，进行简单的数据分析。此外，还会介绍生物学序列中的概率模型</p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Cristianini, N., &amp; Hahn, M. W. (2006). Introduction to computational genomics : A case studies approach. Retrieved from <a href="https://ebookcentral.proquest.com/lib/bristol/detail.action?docID=281734" target="_blank" rel="noopener">https://ebookcentral.proquest.com/lib/bristol/detail.action?docID=281734</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
       
     </div>
     
@@ -369,9 +397,9 @@
           
             <a href="/tags/学习/" rel="tag"><i class="fa fa-tag"></i> 学习</a>
           
-            <a href="/tags/图形学/" rel="tag"><i class="fa fa-tag"></i> 图形学</a>
+            <a href="/tags/生物信息学/" rel="tag"><i class="fa fa-tag"></i> 生物信息学</a>
           
-            <a href="/tags/线性代数/" rel="tag"><i class="fa fa-tag"></i> 线性代数</a>
+            <a href="/tags/读书/" rel="tag"><i class="fa fa-tag"></i> 读书</a>
           
         </div>
       
@@ -384,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/bio-cellular-systems.html" rel="next" title="元胞系统的生物学启发">
-                <i class="fa fa-chevron-left"></i> 元胞系统的生物学启发
+              <a href="/graphics-light.html" rel="next" title="图形学的各种光照模型">
+                <i class="fa fa-chevron-left"></i> 图形学的各种光照模型
               </a>
             
           </div>
@@ -394,8 +422,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/compuNero-firstOrderDiff.html" rel="prev" title="神经科学一阶微分方程">
-                神经科学一阶微分方程 <i class="fa fa-chevron-right"></i>
+              <a href="/genomics-genome.html" rel="prev" title="计算基因学读书笔记 1：基因组初探">
+                计算基因学读书笔记 1：基因组初探 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -558,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#向量空间"><span class="nav-number">1.</span> <span class="nav-text">向量空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尺度缩放"><span class="nav-number">2.</span> <span class="nav-text">尺度缩放</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#旋转"><span class="nav-number">3.</span> <span class="nav-text">旋转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动"><span class="nav-number">4.</span> <span class="nav-text">移动</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么是生物信息学"><span class="nav-number">1.</span> <span class="nav-text">为什么是生物信息学</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生物学中的细胞"><span class="nav-number">2.</span> <span class="nav-text">生物学中的细胞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生物"><span class="nav-number">2.1.</span> <span class="nav-text">生物</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#细胞"><span class="nav-number">2.2.</span> <span class="nav-text">细胞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#蛋白质"><span class="nav-number">2.3.</span> <span class="nav-text">蛋白质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生物学的未来"><span class="nav-number">3.</span> <span class="nav-text">生物学的未来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下期预告"><span class="nav-number">4.</span> <span class="nav-text">下期预告</span></a></li></ol></div>
             
 
           </div>

@@ -342,7 +342,7 @@
       
 
       
-        <p>其实就是 <strong>Dual Linear Regression</strong>，但感觉是非常迷幻的概念，网上相关资料真的好少，主要意思就是我不用原始数据来学习，而是把数据集映射到另一个对偶空间，然后在那个对偶空间里解决问题，感觉有点像表征学习？这样的好处就是，相比普通的线性回归用参数 $w$ 来表达变量之间的关系，对偶线性回归就不需要参数了，可以用变量本身来表达变量之间的关系，这样模型的复杂度就不会被参数的维度影响，不至于过拟合了，我自己理解下来大概是这样的思想</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>其实就是 <strong>Dual Linear Regression</strong>，但感觉是非常迷幻的概念，网上相关资料真的好少，主要意思就是我不用原始数据来学习，而是把数据集映射到另一个对偶空间，然后在那个对偶空间里解决问题，感觉有点像表征学习？这样的好处就是，相比普通的线性回归用参数 $w$ 来表达变量之间的关系，对偶线性回归就不需要参数了，可以用变量本身来表达变量之间的关系，这样模型的复杂度就不会被参数的维度影响，不至于过拟合了，我自己理解下来大概是这样的思想</p>
 <a id="more"></a>
 <h2 id="核-Kernel"><a href="#核-Kernel" class="headerlink" title="核 Kernel"></a>核 Kernel</h2><p>核是一种函数，这种函数的作用就<strong>在某些空间中定义内积（点积）</strong>。因为定义内积比定义空间性质简单多了，有了核，我们就不需要真正问题空间定义出来，这样就可以处理无穷维的问题，也可以在线性空间中处理非线性的问题。核函数定义的空间叫做<strong>特征空间 Induced Space</strong>，通常也会叫做<strong>希尔伯特空间 Hilbert Space</strong>。<br>$$k(x_i,x_j)=\phi(x_i)^T\phi(x_j)$$<br>其中 $\phi()$ 就是特征映射，$x$ 是来自原始空间的向量。</p>
 <p>核函数的好处就是，我们并不需要关心这个真正的特征映射 $\phi()$ 到底是什么，只需要关心 $\phi(x_i)^T\phi(x_j)$ 就可以了。更直观的理解就是，我们不需要了解特征空间具体是什么样的，也就是不需要关心数据在特征空间中<strong>具体的位置</strong>，而只需要了解数据之间的距离就行了，这个距离就使用内积定义的一种<strong>相似性</strong>，不一定是欧式距离。因此，核函数允许我们<strong>隐式地进行特征映射</strong>。<br>实际上，核函数描述的就是数据点的<strong>协方差</strong></p>
@@ -487,7 +487,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -498,7 +498,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -509,7 +509,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

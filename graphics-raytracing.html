@@ -344,7 +344,7 @@
       
 
       
-        <p>光线追踪是图形学里最重要的东西之一了，本科就是这部分水水过，所以感觉图形学像没学过一样，这回得再捡起来一次。<br><a id="more"></a></p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>光线追踪是图形学里最重要的东西之一了，本科就是这部分水水过，所以感觉图形学像没学过一样，这回得再捡起来一次。<br><a id="more"></a></p>
 <h2 id="光线追踪模型"><a href="#光线追踪模型" class="headerlink" title="光线追踪模型"></a>光线追踪模型</h2><p>按照常规思维，要追踪光线，我们肯定是有一个光源，在物体上发生反射后被相机捕捉到，然后进行光栅化。这样遇到的一个问题就是，光源在物体表面的反射十分复杂，有很多反射的光线其实没有被相机捕捉，可是为了光栅化就不得不全部计算，造成大量的计算冗余。<br>因此我们采用反向思路，从相机视角出发，相机通过光栅上的像素点延长到到物体，直接计算对应物体在当前光照条件下的真实色值，这样每一个像素点都是真实世界的一个映射。<br><img src="graphics-raytracing/raytracing.jpg" alt=""><br>我们记相机原点在 $\left[0,0,0\right]^T$<br>视角沿着 $z$ 轴方向，$\left[0,0,1\right]^T$<br>整个图像平面定义为<br>$$\{\left[u,v,f\right]^T|-\frac{W}{2} &lt; u &lt; \frac{W}{2},-\frac{H}{2} &lt; v &lt; \frac{H}{2}\}$$<br>从物体平面上点到光栅上对应点的单位向量就是<br>$$<br>d_{ij}=\frac{1}{\sqrt{\left[u_i,v_j,f\right]\left[u_i,v_j,f\right]^T}}\left[u_i,v_j,f\right]^T<br>$$<br>因此特定点的光线就可以用该向量线性表出<br>$$<br>r_{ij} = s+t\cdot d_{ij}<br>$$<br>然后就对每一个像素点，计算光线，并计算光线与物体的交点，将其色值描绘出来</p>
 <h2 id="三角面片光线追踪"><a href="#三角面片光线追踪" class="headerlink" title="三角面片光线追踪"></a>三角面片光线追踪</h2><p>三角面片是图形学里用的最多的东西了，好处就是，任意给定空间三个点，一定能构成平面，而不会扭转<br>首先在面片上找到两个向量 $e_0$ $e_1$<br>\begin{align}<br>e_0 &amp;= v_1-v_0 \\<br>e_1 &amp;= v_2-v_1<br>\end{align}</p>
 <p>平面上的点就可以用向量线性表出<br>$$<br>r=v_0+ue_0+ve_1<br>$$<br>之前得出光线的方程<br>$$<br>r_{ij}=s+t\cdot d_{ij}<br>$$<br>两边相等<br>$$<br>s+t\cdot d_{ij}=v_0+ue_0+ve_1<br>$$<br>我们有三个未知数 $\left[u,v,t\right]^T$ 需要解出，而我们现在正好有了三个式子，那就很美妙了。<br>把未知数和已知数分到等式两侧<br>$$<br>s-v_0=-t\cdot d_{ij}+ue_0+ve_1<br>$$<br>然后用矩阵表示出来<br>$$<br>\left[<br>\begin{array}{c}<br>s^x-v_0^x\\<br>s^y-v_0^y\\<br>s^z-v_0^z<br>\end{array}<br>\right]<br>=<br>\left[<br>\begin{array}{ccc}<br>-d_{ij}^x&amp;e_0^x&amp;e_1^x\\<br>-d_{ij}^y&amp;e_0^y&amp;e_1^y\\<br>-d_{ij}^z&amp;e_0^z&amp;e_1^z\\<br>\end{array}<br>\right]<br>\cdot<br>\left[<br>\begin{array}{c}<br>t\\<br>u\\<br>v<br>\end{array}<br>\right]<br>$$<br>那这就是一个最基本的矩阵方程形式了<br>$$<br>Ax=b<br>$$<br>解这个方程就是两侧左乘矩阵的逆<br>$$<br>x=A^{-1}b<br>$$</p>
@@ -474,7 +474,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -485,7 +485,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -496,7 +496,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
