@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://jyfmidi.com/compuNero-firstOrderDiff.html</loc>
+    <lastmod>2019-02-16</lastmod>
+  </url>  <url>
+    <loc>https://jyfmidi.com/graphics-light.html</loc>
+    <lastmod>2019-02-16</lastmod>
+  </url>  <url>
+    <loc>https://jyfmidi.com/ml-revise-gp.html</loc>
+    <lastmod>2019-02-16</lastmod>
+  </url>  <url>
     <loc>https://jyfmidi.com/genomics-prologue.html</loc>
     <lastmod>2019-02-16</lastmod>
   </url>  <url>
     <loc>https://jyfmidi.com/genomics-genome.html</loc>
     <lastmod>2019-02-16</lastmod>
   </url>  <url>
-    <loc>https://jyfmidi.com/graphics-light.html</loc>
-    <lastmod>2019-02-16</lastmod>
-  </url>  <url>
     <loc>https://jyfmidi.com/graphics-raytracing.html</loc>
-    <lastmod>2019-02-15</lastmod>
-  </url>  <url>
-    <loc>https://jyfmidi.com/compuNero-firstOrderDiff.html</loc>
     <lastmod>2019-02-15</lastmod>
   </url>  <url>
     <loc>https://jyfmidi.com/graphics-transform.html</loc>
@@ -44,9 +47,6 @@
     <lastmod>2019-02-08</lastmod>
   </url>  <url>
     <loc>https://jyfmidi.com/ml-revise-probabilities.html</loc>
-    <lastmod>2019-02-08</lastmod>
-  </url>  <url>
-    <loc>https://jyfmidi.com/ml-revise-gp.html</loc>
     <lastmod>2019-02-08</lastmod>
   </url>  <url>
     <loc>https://jyfmidi.com/algo-dp.html</loc>
