@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="心灵的国王">
 <meta property="og:description" content="基因组和基因序列 序列的概率模型 序列的统计特征 标准数据形式及数据库">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-16T15:44:50.097Z">
+<meta property="og:updated_time" content="2019-02-16T16:17:02.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算基因学读书笔记 1：基因组初探">
 <meta name="twitter:description" content="基因组和基因序列 序列的概率模型 序列的统计特征 标准数据形式及数据库">
@@ -368,6 +368,27 @@
 <li><strong>真核生物 Eukaryotic</strong> 的核内基因组比原核生物长得多，从真菌的 8 Mb 到阿米巴虫的 670 Gb。人类的基因组为 3.5 Gb。</li>
 <li><strong>胞器 Organellar</strong> 除了巨型的核内基因组，真核生物在胞器内也携带小型的基因组。最常见的胞器是<strong>线粒体 mitochondrion</strong> 和<strong>叶绿体 chloroplast</strong>。这些基因组一般来自于在真核细胞内的原核有机体的残余。这些基因组一般为几万个 bp 长的环形结构</li>
 </ul>
+<h2 id="基因组序列的概率模型"><a href="#基因组序列的概率模型" class="headerlink" title="基因组序列的概率模型"></a>基因组序列的概率模型</h2><h3 id="DNA-序列和基因组"><a href="#DNA-序列和基因组" class="headerlink" title="DNA 序列和基因组"></a>DNA 序列和基因组</h3><ul>
+<li>一个 DNA 序列 $s$ 定义为核苷酸 $N={A,C,G,T}$ 组成的有限长序列</li>
+<li>一个基因组是和一个有机体或者胞器相关的所有 DNA 序列</li>
+</ul>
+<h3 id="序列的元素"><a href="#序列的元素" class="headerlink" title="序列的元素"></a>序列的元素</h3><ul>
+<li>一个序列的所有元素记作 $s=s_1s_2\ldots s_n$，每一个 $s_i$ 代表一个核苷酸</li>
+<li>给定一组下标集 $K$ 获得的序列，就是把 $s$ 中对应下标的元素串联起来。比如 $K={i,j,k}$ 时，$s(K)=s_is_js_k$</li>
+<li>如果 $K$ 是整数闭区间 $K=\left[i,j\right]$，也可以记作 $K=(i:j)$。对应子序列就是子串 $s(i:j)$</li>
+<li>如果 $K$ 是单个元素 $K={i}$，则对应的就是单个特定元素 $s(i)=s_i$</li>
+<li>例子：比如在 DNA 序列 $s=ATATGTCGTGCA$ 中，$s(3:6)=ATGT$，$s(8)=s_8=G$</li>
+</ul>
+<h3 id="多项分布序列模型"><a href="#多项分布序列模型" class="headerlink" title="多项分布序列模型"></a>多项分布序列模型</h3><ul>
+<li>4 种核苷酸都由随机过程独立同分布地产生，概率分布为 $p=(p_A,p_C,p_G,p_T)</li>
+<li>序列 $s$ 中位置 $i$ 的元素所带核苷酸的基 $x\in N$ 的概率为 $p_x=p(s(i)=x)$，与其下标 $i$ 没有关系</li>
+<li>作为概率分布，必须保证 $p_A+p_C+p_G+p_T=1$</li>
+<li>多项分布计算出给定序列的概率 $P$ 又叫作给定模型下，出现观测到数据的似然 $L$。比如给定序列 $s=s_1s_2\ldots s_n$，其出现概率<br>$$<br>P(s)=\prod^N_{i=1}p(s(i))<br>$$</li>
+</ul>
+<h3 id="马尔可夫序列模型"><a href="#马尔可夫序列模型" class="headerlink" title="马尔可夫序列模型"></a>马尔可夫序列模型</h3><ul>
+<li>核苷酸的种类取决于序列中前面的核苷酸符号</li>
+<li>$n$ 阶马尔可夫中每一个元素取决于前 $n$ 个核苷酸符号，多项分布模型可以看作 $0$ 阶马尔可夫</li>
+</ul>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Cristianini, N., &amp; Hahn, M. W. (2006). Introduction to computational genomics : A case studies approach. Retrieved from <a href="https://ebookcentral.proquest.com/lib/bristol/detail.action?docID=281734" target="_blank" rel="noopener">https://ebookcentral.proquest.com/lib/bristol/detail.action?docID=281734</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
       
     </div>
@@ -572,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基因组剖析"><span class="nav-number">1.</span> <span class="nav-text">基因组剖析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基因组"><span class="nav-number">1.1.</span> <span class="nav-text">基因组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNA"><span class="nav-number">1.2.</span> <span class="nav-text">DNA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基因组例子"><span class="nav-number">1.3.</span> <span class="nav-text">基因组例子</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基因组剖析"><span class="nav-number">1.</span> <span class="nav-text">基因组剖析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基因组"><span class="nav-number">1.1.</span> <span class="nav-text">基因组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNA"><span class="nav-number">1.2.</span> <span class="nav-text">DNA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基因组例子"><span class="nav-number">1.3.</span> <span class="nav-text">基因组例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基因组序列的概率模型"><span class="nav-number">2.</span> <span class="nav-text">基因组序列的概率模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNA-序列和基因组"><span class="nav-number">2.1.</span> <span class="nav-text">DNA 序列和基因组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列的元素"><span class="nav-number">2.2.</span> <span class="nav-text">序列的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项分布序列模型"><span class="nav-number">2.3.</span> <span class="nav-text">多项分布序列模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#马尔可夫序列模型"><span class="nav-number">2.4.</span> <span class="nav-text">马尔可夫序列模型</span></a></li></ol></li></ol></div>
             
 
           </div>
