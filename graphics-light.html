@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jyfmidi.com/graphics-light/reflect.png">
 <meta property="og:image" content="https://jyfmidi.com/graphics-light/foreshortening.png">
-<meta property="og:updated_time" content="2019-02-16T22:49:08.947Z">
+<meta property="og:updated_time" content="2019-02-18T09:20:04.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图形学的各种光照模型（待填坑）">
 <meta name="twitter:description" content="然后就开始搞各种光照了，光照的渲染也是现在图形学一个很热门的研究方向。光照的最重要的作用就是为了塑造真实感，物体的材质都需要用光照体现，超级重要的！">
@@ -370,7 +370,17 @@
 <p>距离衰减<br>\begin{align}<br>d&amp;=(s_c+s_l\cdot r+s_q\cdot r^2)^{-1}\\<br>r&amp;=((s_{pos}-p)^T(s_{pos}-p))^{\frac{1}{2}}<br>\end{align}</p>
 <p>双向反射分布方程 BRDF<br>$$<br>f(L,V)<br>$$<br>能量守恒<br>$$<br>\int f(L,V)dL dV = 1<br>$$<br>Helmholtz reciprocity<br>$$<br>f(L,V) = f(V,L)<br>$$</p>
 <p>双向扩散平面反射分布方程 BRSSDF</p>
-<h3 id="法向量贴图"><a href="#法向量贴图" class="headerlink" title="法向量贴图"></a>法向量贴图</h3><h3 id="天空盒：环境贴图"><a href="#天空盒：环境贴图" class="headerlink" title="天空盒：环境贴图"></a>天空盒：环境贴图</h3>
+<h3 id="法向量贴图"><a href="#法向量贴图" class="headerlink" title="法向量贴图"></a>法向量贴图</h3><h3 id="天空盒：环境贴图"><a href="#天空盒：环境贴图" class="headerlink" title="天空盒：环境贴图"></a>天空盒：环境贴图</h3><h2 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h2><h3 id="阴影性质"><a href="#阴影性质" class="headerlink" title="阴影性质"></a>阴影性质</h3><ul>
+<li>numbra 硬阴影</li>
+<li>penumbra 软阴影</li>
+<li>antumbra 交叉</li>
+</ul>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>使用多个点作为光源</li>
+<li>使用多个相交面</li>
+</ul>
+<h2 id="相机"><a href="#相机" class="headerlink" title="相机"></a>相机</h2><p>使用光圈</p>
+
       
     </div>
     
@@ -578,7 +588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#光照计算"><span class="nav-number">1.</span> <span class="nav-text">光照计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">1.1.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折射"><span class="nav-number">1.2.</span> <span class="nav-text">折射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光照性质"><span class="nav-number">2.</span> <span class="nav-text">光照性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平面材质"><span class="nav-number">2.1.</span> <span class="nav-text">平面材质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#光源性质"><span class="nav-number">2.2.</span> <span class="nav-text">光源性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法向量贴图"><span class="nav-number">2.3.</span> <span class="nav-text">法向量贴图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#天空盒：环境贴图"><span class="nav-number">2.4.</span> <span class="nav-text">天空盒：环境贴图</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#光照计算"><span class="nav-number">1.</span> <span class="nav-text">光照计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">1.1.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折射"><span class="nav-number">1.2.</span> <span class="nav-text">折射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光照性质"><span class="nav-number">2.</span> <span class="nav-text">光照性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平面材质"><span class="nav-number">2.1.</span> <span class="nav-text">平面材质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#光源性质"><span class="nav-number">2.2.</span> <span class="nav-text">光源性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法向量贴图"><span class="nav-number">2.3.</span> <span class="nav-text">法向量贴图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#天空盒：环境贴图"><span class="nav-number">2.4.</span> <span class="nav-text">天空盒：环境贴图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阴影"><span class="nav-number">3.</span> <span class="nav-text">阴影</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阴影性质"><span class="nav-number">3.1.</span> <span class="nav-text">阴影性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">3.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相机"><span class="nav-number">4.</span> <span class="nav-text">相机</span></a></li></ol></div>
             
 
           </div>
