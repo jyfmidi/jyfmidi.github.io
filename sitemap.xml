@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jyfmidi.com/test.html</loc>
+    
+    <lastmod>2019-03-18T12:32:46.296Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jyfmidi.com/demo.html</loc>
+    
+    <lastmod>2019-03-18T12:17:43.570Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jyfmidi.com/train.html</loc>
+    
+    <lastmod>2019-03-18T12:17:37.157Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://jyfmidi.com/genomics-human.html</loc>
+    
+    <lastmod>2019-02-21T17:14:30.582Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jyfmidi.com/graphics-light.html</loc>
     
-    <lastmod>2019-02-18T09:20:04.924Z</lastmod>
+    <lastmod>2019-02-18T09:48:01.666Z</lastmod>
     
   </url>
   

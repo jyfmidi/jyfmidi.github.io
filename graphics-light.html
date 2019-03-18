@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://jyfmidi.com/graphics-light/reflect.png">
 <meta property="og:image" content="https://jyfmidi.com/graphics-light/foreshortening.png">
-<meta property="og:updated_time" content="2019-02-18T09:20:04.924Z">
+<meta property="og:updated_time" content="2019-02-18T09:48:01.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图形学的各种光照模型（待填坑）">
 <meta name="twitter:description" content="然后就开始搞各种光照了，光照的渲染也是现在图形学一个很热门的研究方向。光照的最重要的作用就是为了塑造真实感，物体的材质都需要用光照体现，超级重要的！">
@@ -379,7 +379,9 @@
 <li>使用多个点作为光源</li>
 <li>使用多个相交面</li>
 </ul>
-<h2 id="相机"><a href="#相机" class="headerlink" title="相机"></a>相机</h2><p>使用光圈</p>
+<h2 id="相机"><a href="#相机" class="headerlink" title="相机"></a>相机</h2><h3 id="光圈"><a href="#光圈" class="headerlink" title="光圈"></a>光圈</h3><p>使用光圈，不同半径的物体出现不同聚焦，将聚焦的位置进行平均</p>
+<h3 id="光圈晕影"><a href="#光圈晕影" class="headerlink" title="光圈晕影"></a>光圈晕影</h3><p>光在透镜中折射</p>
+<p>Cramer 规则</p>
 
       
     </div>
@@ -505,7 +507,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -588,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#光照计算"><span class="nav-number">1.</span> <span class="nav-text">光照计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">1.1.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折射"><span class="nav-number">1.2.</span> <span class="nav-text">折射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光照性质"><span class="nav-number">2.</span> <span class="nav-text">光照性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平面材质"><span class="nav-number">2.1.</span> <span class="nav-text">平面材质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#光源性质"><span class="nav-number">2.2.</span> <span class="nav-text">光源性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法向量贴图"><span class="nav-number">2.3.</span> <span class="nav-text">法向量贴图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#天空盒：环境贴图"><span class="nav-number">2.4.</span> <span class="nav-text">天空盒：环境贴图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阴影"><span class="nav-number">3.</span> <span class="nav-text">阴影</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阴影性质"><span class="nav-number">3.1.</span> <span class="nav-text">阴影性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">3.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相机"><span class="nav-number">4.</span> <span class="nav-text">相机</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#光照计算"><span class="nav-number">1.</span> <span class="nav-text">光照计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射"><span class="nav-number">1.1.</span> <span class="nav-text">反射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#折射"><span class="nav-number">1.2.</span> <span class="nav-text">折射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#光照性质"><span class="nav-number">2.</span> <span class="nav-text">光照性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平面材质"><span class="nav-number">2.1.</span> <span class="nav-text">平面材质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#光源性质"><span class="nav-number">2.2.</span> <span class="nav-text">光源性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法向量贴图"><span class="nav-number">2.3.</span> <span class="nav-text">法向量贴图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#天空盒：环境贴图"><span class="nav-number">2.4.</span> <span class="nav-text">天空盒：环境贴图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阴影"><span class="nav-number">3.</span> <span class="nav-text">阴影</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阴影性质"><span class="nav-number">3.1.</span> <span class="nav-text">阴影性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">3.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相机"><span class="nav-number">4.</span> <span class="nav-text">相机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#光圈"><span class="nav-number">4.1.</span> <span class="nav-text">光圈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#光圈晕影"><span class="nav-number">4.2.</span> <span class="nav-text">光圈晕影</span></a></li></ol></li></ol></div>
             
 
           </div>
