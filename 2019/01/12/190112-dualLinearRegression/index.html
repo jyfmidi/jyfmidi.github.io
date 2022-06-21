@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="Category: 机器学习 - Evan's Blog"><meta name="theme-color" content="#6ba8a9"><title>Category: 机器学习 - Evan's Blog</title><style>@font-face {
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="对偶线性回归推导 - Evan's Blog"><meta name="theme-color" content="#6ba8a9"><title>对偶线性回归推导 - Evan's Blog</title><style>@font-face {
   font-family: 'Abril Fatface';
   font-style: normal;
   font-weight: 400;
@@ -15,7 +15,20 @@
 </style><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=xx-xxxxxxx-xx" async></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'xx-xxxxxxx-xx');</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><script type="text/javascript">MathJax.Hub.Config({
+gtag('config', 'xx-xxxxxxx-xx');</script><link rel="stylesheet" href="/css/tocbot.css"><script src="/js/tocbot.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '.toc__content',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '.article__content',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    // For headings inside relative or absolute positioned containers within content.
+    hasInnerContainers: true,
+    orderedList: false,
+    collapseDepth: 2,
+  });
+})</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><script type="text/javascript">MathJax.Hub.Config({
   tex2jax: {
     inlineMath: [ ['$','$'], ["\\(","\\)"] ],
     processEscapes: true,
@@ -27,4 +40,33 @@ MathJax.Hub.Queue(function() {
   for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
   }
-});</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><meta name="generator" content="Hexo 6.2.0"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">Evan's Blog</a></h1><p></p></div></div><div class="paper-container"><div class="category-view"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">Category: 机器学习</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><div class="posts"><div class="posts-item"><h2 class="posts-item__title"><a href="/2019/01/12/190112-dualLinearRegression/">对偶线性回归推导</a></h2><span class="post__date">2019-01-12</span><a href="/tags/Math/"><span class="post__tags">#Math</span></a></div><div class="posts-item"><h2 class="posts-item__title"><a href="/2019/01/11/190111-linearRegressionCase/">贝叶斯线性回归简单实践</a></h2><span class="post__date">2019-01-11</span><a href="/tags/Math/"><span class="post__tags">#Math</span></a></div><div class="posts-item"><h2 class="posts-item__title"><a href="/2019/01/10/190110-linearRegression/">线性回归数学推导</a></h2><span class="post__date">2019-01-10</span><a href="/tags/Math/"><span class="post__tags">#Math</span></a></div></div><div class="sidebar"><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BF%BB%E8%AF%91%E6%89%B9%E8%AF%84/">翻译批评</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reference/" rel="tag">Reference</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sanskrit/" rel="tag">Sanskrit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Translation/" rel="tag">Translation</a></li></ul></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="paginator"><span class="page-number current">1</span></div></div></div></div></div><div class="footer"><span>©️2019-2022 Designed By&nbsp;<strong><a target="_blank" rel="noopener" href="https://github.com/random-yang">RandomYang</a></strong> Powered By&nbsp;</span><strong><a target="_blank" rel="noopener" href="https://hexo.io">hexo</a></strong></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
+});</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><meta name="generator" content="Hexo 6.2.0"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">Evan's Blog</a></h1><p></p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">对偶线性回归推导</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">对偶线性回归推导</a></h2><span class="post__date">2019-01-12</span><a href="/tags/Math/"><span class="post__tags">#Math</span></a></div></div><div class="article__content"><p>对偶线性回归其实就是 <strong>Dual Linear Regression</strong>，但感觉是非常迷幻的概念，网上相关资料真的好少，主要意思就是我不用原始数据来学习，而是把数据集映射到另一个对偶空间，然后在那个对偶空间里解决问题，感觉有点像表征学习？这样的好处就是，相比普通的线性回归用参数 $w$ 来表达变量之间的关系，对偶线性回归就不需要参数了，可以用变量本身来表达变量之间的关系，这样模型的复杂度就不会被参数的维度影响，不至于过拟合了，我自己理解下来大概是这样的思想</p>
+<h2 id="核-Kernel"><a href="#核-Kernel" class="headerlink" title="核 Kernel"></a>核 Kernel</h2><p>核是一种函数，这种函数的作用就在<strong>某些空间中定义内积（点积）</strong>。因为定义内积比定义空间性质简单多了，有了核，我们就不需要真正问题空间定义出来，这样就可以处理无穷维的问题，也可以在线性空间中处理非线性的问题。核函数定义的空间叫做<strong>特征空间 Induced Space</strong>，通常也会叫做<strong>希尔伯特空间 Hilbert Space</strong>。</p>
+<script type="math/tex; mode=display">k(x_i,x_j)=\phi(x_i)^T\phi(x_j)</script><p>其中 $\phi()$ 就是特征映射，$x$ 是来自原始空间的向量。</p>
+<p>核函数的好处就是，我们并不需要关心这个真正的特征映射 $\phi()$ 到底是什么，只需要关心 $\phi(x_i)^T\phi(x_j)$ 就可以了。更直观的理解就是，我们不需要了解特征空间具体是什么样的，也就是不需要关心数据在特征空间中<strong>具体的位置</strong>，而只需要了解数据之间的距离就行了，这个距离就使用内积定义的一种<strong>相似性</strong>，不一定是欧式距离。因此，核函数允许我们<strong>隐式地</strong>进行特征映射。<br>实际上，核函数描述的就是数据点的<strong>协方差</strong></p>
+<h2 id="回顾贝叶斯后验"><a href="#回顾贝叶斯后验" class="headerlink" title="回顾贝叶斯后验"></a>回顾贝叶斯后验</h2><p>先 cue 一下万物之父贝叶斯公式</p>
+<script type="math/tex; mode=display">p(w|t,x)=\frac{p(t|w,x)p(w)}{p(t)}</script><p>在之前的线性回归中，我们获得了似然<br>\begin{align}<br>p(t|w,x)&amp;=\prod\limits^N_{n=1} p(t_n|w,x)\\<br>&amp;\sim \mathcal{N}(t_n|w^Tx_n,\sigma^2I)<br>\end{align}<br>以及参数 $w$ 的高斯共轭先验</p>
+<script type="math/tex; mode=display">p(w)\sim p(t|w,x)p(w)</script><p>然后计算出后验<br>\begin{align}<br>p(w|t,x)&amp;\propto p(t|w,x)p(w)\\<br>&amp;\propto \prod\limits^N_{n=1} \frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{1}{2\sigma^2}(w^Tx_n-t_n)^T(w^Tx_n-t_n)}\frac{1}{\sqrt{2\pi\tau^2}}e^{-\frac{1}{2\tau^2}w^Tw}\\<br>&amp;\propto \frac{1}{(\sqrt{2\pi\sigma^2})^N}e^{-\frac{1}{2\sigma^2}(Xw-t)^T(Xw-t)}\frac{1}{(\sqrt{2\pi\tau^2})^N}e^{-\frac{1}{2\tau^2}w^Tw}<br>\end{align}</p>
+<p>使后验最大化，获取参数 $w$ 的点估计。也就是写出损失函数找驻点<br>\begin{align}<br>-\log p(w|t,x)=J(w)&amp;=\frac{1}{2}(Xw-t)^T(Xw-t)+\frac{\lambda}{2}w^Tw\\<br>\frac{\partial}{\partial w}J(w)&amp;=\frac{1}{2}2X^T(Xw-t)+\frac{\lambda}{2}2W=0\\<br>w&amp;=-\frac{1}{\lambda}X^T(Xw-t)<br>\end{align}</p>
+<h2 id="对偶映射"><a href="#对偶映射" class="headerlink" title="对偶映射"></a>对偶映射</h2><p>那此时，我们把要求的 $w$ 映射到一个对偶空间中的 $a=-\frac{1}{\lambda}(Xw-t)$ 来表示变量之间的关系</p>
+<p>\begin{align}<br>w&amp;=-\frac{1}{\lambda}X^T(Xw-t)\\<br>&amp;=X^Ta=\sum\limits^N_{n=1} \alpha_nx_n<br>\end{align}</p>
+<p>把损失函数中的 $w$ 也用 $a$ 代替重写。这样就引入了<strong>对偶表达 dual representation</strong>，我们就把有关参数矩阵 $w$ 的最小方差问题，转化为了有关于参数矩阵 $a$ 的最小方差问题。</p>
+<p>\begin{align}<br>J(w)&amp;=\frac{1}{2}(Xw-t)^T(Xw-t)+\frac{\lambda}{2}w^T\\<br>J(a)&amp;=\frac{1}{2}a^TXX^TXX^Ta-a^TXX^Tt+\frac{1}{2}t^Tt+\frac{\lambda}{2}a^TXX^Ta<br>\end{align}</p>
+<h2 id="核回归-Kernel-Regression"><a href="#核回归-Kernel-Regression" class="headerlink" title="核回归 Kernel Regression"></a>核回归 Kernel Regression</h2><p>我们现在使用一个核函数</p>
+<script type="math/tex; mode=display">k(x_n,x_m)=x_n^Tx_m</script><p>定义核函数 $k(x_n,x_m)$ 的 <strong>Gram 矩阵</strong> $K=XX^T$，Gram 矩阵是一个对称矩阵，定义了所有数据点的内积</p>
+<script type="math/tex; mode=display">K =
+\left(
+\begin{matrix}
+x_1^Tx_1 & x_1^Tx_2 & \ldots & x_1^Tx_N \\
+x_2^Tx_1 & x_2^Tx_2 & \ldots & x_2^Tx_N \\
+\cdots & \cdots & \cdots & \cdots \\
+x_N^Tx_1 & x_N^Tx_2 & \ldots & x_N^Tx_N
+\end{matrix}
+\right)</script><p>代入误差函数，则误差函数此时就变成了</p>
+<script type="math/tex; mode=display">J(a)=\frac{1}{2}a^TKKa-a^TKt+\frac{1}{2}t^Tt+\frac{\lambda}{2}a^TKa</script><p>现在把先前计算出来的 $w=X^Ta$ 代回到对偶参数 $a$ 的定义表达式里去，而此时的 $w$ 已经是 $a$ 的表达式了，这就是传说中的用 $a$ 表示 $a$ 本身<br>\begin{align}<br>a&amp;=-\frac{1}{\lambda}(Xw-t)\\<br>&amp;=-\frac{1}{\lambda}(XX^Ta-t)\\<br>a &amp;= \frac{1}{K+\lambda I}t<br>\end{align}</p>
+<p>那么如果我们把这个表达式代入到线性回归模型中<br>\begin{align}<br>y(x’)&amp;=w^Tx’=a^TXx’\\<br>&amp;=a^Tk(x,x’)\\<br>&amp;=(\frac{1}{K+\lambda I}t)^Tk(x,x’)\\<br>&amp;=k(x’,x)\frac{1}{K+\lambda I}t<br>\end{align}</p>
+<p>这就是核回归方程，可以用来预测新的数据点 $x’$，获取输出 $y(x’)</p>
+<p>$k(x’,x)$ 是在测试点 $x’$ 与训练数据 $x$ 之间进行计算的核函数</p>
+<p>$K=k(X,X)$ 是在所有训练数据点之间进行计算的核函数</p>
+<p>$\lambda$ 是一个关于噪声的控制参数</p>
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button" href="/2022/01/10/210710-hansuyin33/">第33届韩赛：The Deepest Human Life</a><a class="next-button" href="/2019/01/11/190111-linearRegressionCase/">贝叶斯线性回归简单实践</a></div></div></div></div><div class="footer"><span>©️2019-2022 Designed By&nbsp;<strong><a target="_blank" rel="noopener" href="https://github.com/random-yang">RandomYang</a></strong> Powered By&nbsp;</span><strong><a target="_blank" rel="noopener" href="https://hexo.io">hexo</a></strong></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
