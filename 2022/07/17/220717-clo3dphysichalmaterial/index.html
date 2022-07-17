@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="Archive: 2/2022: 2022 - Evan's Blog"><meta name="theme-color" content="#6ba8a9"><title>Archive: 2/2022: 2022 - Evan's Blog</title><style>@font-face {
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="Clo3d 中面料材质物理属性的设置 - Evan's Blog"><meta name="theme-color" content="#6ba8a9"><title>Clo3d 中面料材质物理属性的设置 - Evan's Blog</title><style>@font-face {
   font-family: 'Abril Fatface';
   font-style: normal;
   font-weight: 400;
@@ -15,7 +15,20 @@
 </style><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/index.css"><script src="https://cdn.bootcss.com/highlight.js/9.6.0/highlight.min.js" defer></script><script src="/js/paper.js" defer></script><script src="https://www.googletagmanager.com/gtag/js?id=xx-xxxxxxx-xx" async></script><script>window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'xx-xxxxxxx-xx');</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><script type="text/javascript">MathJax.Hub.Config({
+gtag('config', 'xx-xxxxxxx-xx');</script><link rel="stylesheet" href="/css/tocbot.css"><script src="/js/tocbot.js" defer></script><script>window.addEventListener('DOMContentLoaded', () => {
+  tocbot.init({
+    // Where to render the table of contents.
+    tocSelector: '.toc__content',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: '.article__content',
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    // For headings inside relative or absolute positioned containers within content.
+    hasInnerContainers: true,
+    orderedList: false,
+    collapseDepth: 2,
+  });
+})</script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script><script type="text/javascript">MathJax.Hub.Config({
   tex2jax: {
     inlineMath: [ ['$','$'], ["\\(","\\)"] ],
     processEscapes: true,
@@ -27,4 +40,157 @@ MathJax.Hub.Queue(function() {
   for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
   }
-});</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><meta name="generator" content="Hexo 6.2.0"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">Evan's Blog</a></h1><p></p></div></div><div class="paper-container"><div class="archive-view"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">Archive: 2022: 2/2022</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><div class="posts"><div class="posts-item"><h2 class="posts-item__title"><a href="/2022/02/12/220212-aboutgas/">浅聊以太坊的 gas</a></h2><span class="post__date">2022-02-12</span><a href="/tags/Blockchain/"><span class="post__tags">#Blockchain</span></a></div></div><div class="sidebar"><h2>Categories</h2><div class="sidebar__categories"><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Web3-0/">Web3.0</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BF%BB%E8%AF%91%E6%89%B9%E8%AF%84/">翻译批评</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1/">设计</a></li></ul></div><h2>Tags</h2><div class="sidebar__tags"><ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blockchain/" rel="tag">Blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Clo3d/" rel="tag">Clo3d</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coding/" rel="tag">Coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Fashion/" rel="tag">Fashion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/" rel="tag">Math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NFT/" rel="tag">NFT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Reference/" rel="tag">Reference</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sanskrit/" rel="tag">Sanskrit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Solidity/" rel="tag">Solidity</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Translation/" rel="tag">Translation</a></li></ul></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="paginator"><span class="page-number current">1</span></div></div></div></div></div><div class="footer"><span>©️2019-2022 Designed By&nbsp;<strong><a target="_blank" rel="noopener" href="https://github.com/random-yang">RandomYang</a></strong> Powered By&nbsp;</span><strong><a target="_blank" rel="noopener" href="https://hexo.io">hexo</a></strong></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
+});</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><meta name="generator" content="Hexo 6.2.0"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">Evan's Blog</a></h1><p></p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">Clo3d 中面料材质物理属性的设置</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">Clo3d 中面料材质物理属性的设置</a></h2><span class="post__date">2022-07-17</span><a href="/tags/Clo3d/"><span class="post__tags">#Clo3d</span></a><a href="/tags/Fashion/"><span class="post__tags">#Fashion</span></a></div></div><div class="article__content"><h2 id="面料物理属性"><a href="#面料物理属性" class="headerlink" title="面料物理属性"></a>面料物理属性</h2><p>Clo3d 作为一款服装设计软件，面料模拟自然是软件非常关键的一个核心技术。Clo3d 中，面料的渲染分为；两部分体现：<strong>材质</strong>和<strong>物理属性</strong>。</p>
+<p>前者就如其他 3d 软件或者游戏引擎中的材质属性，包括纹理贴图、法线、着色器、反射强度金属度等光照参数等等，用于体现面料的视觉效果；后者则更为关键，体现面料的质感和物理模拟，比如是硬挺的单宁布还是轻薄的雪纺。</p>
+<p>后者由一系列参数控制，作为非服装设计专业的用户，理解起来并不直观，因此本文希望通过自己设计中的经验，对这些参数都在调整什么能够有一定的总结。</p>
+<p>参数大体上分为各向异性参数和各向同性参数，各向同性参数共 3 个，作用于任意方向，包括：</p>
+<ul>
+<li>内部阻尼</li>
+<li>密度</li>
+<li>摩擦数量</li>
+</ul>
+<p>各向异性参数作用于四个方向：</p>
+<ul>
+<li>纬纱</li>
+<li>经纱</li>
+<li>对角线（右）</li>
+<li>对角线（左）</li>
+</ul>
+<p>而这些参数调整的属性包括：</p>
+<ul>
+<li><strong>强度/张力</strong>：控制面料的拉伸性；大-&gt;不易拉伸，小-&gt;容易拉开</li>
+<li><strong>弯曲强度</strong>：控制面料的硬挺度；大-&gt;面料硬挺，小-&gt;面料具有垂坠感</li>
+<li><strong>变形率</strong>：以百分比表示，体现面料收到外力后弯曲的能力；大-&gt;容易弯曲，小-&gt;不易弯曲</li>
+<li><strong>变形强度</strong>：决定面料每一个褶皱上的弯曲度；大-&gt;褶皱棱角不易弯曲，小-&gt;容易弯曲</li>
+</ul>
+<p>因此一共有 $4 \times 4 = 16$ 个各向异性参数</p>
+<h2 id="物理面料对比"><a href="#物理面料对比" class="headerlink" title="物理面料对比"></a>物理面料对比</h2><p>Clo3d 提供了丰富的预设面料，可以通过对比来进行学习。顺便再记录一个很常用的结构支撑性硬挺面料的参数，一般用于裙撑这类结构。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名</th>
+<th style="text-align:center">棉-厚帆布</th>
+<th style="text-align:center">真丝-雪纺</th>
+<th style="text-align:center">自定义-支撑</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">强度-纬纱</td>
+<td style="text-align:center">46</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">30</td>
+</tr>
+<tr>
+<td style="text-align:left">强度-经纱</td>
+<td style="text-align:center">31</td>
+<td style="text-align:center">13</td>
+<td style="text-align:center">30</td>
+</tr>
+<tr>
+<td style="text-align:left">对角线张力（右）</td>
+<td style="text-align:center">29</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">30</td>
+</tr>
+<tr>
+<td style="text-align:left">对角线张力（左）</td>
+<td style="text-align:center">29</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">30</td>
+</tr>
+<tr>
+<td style="text-align:left">弯曲强度-纬纱</td>
+<td style="text-align:center">56</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:left">弯曲强度-经纱</td>
+<td style="text-align:center">56</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:left">弯曲强度-对角线（右）</td>
+<td style="text-align:center">56</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:left">弯曲强度-对角线（左）</td>
+<td style="text-align:center">56</td>
+<td style="text-align:center">12</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:left">变形率-纬纱</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:left">变形率-经纱</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:left">变形率-对角线（右）</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:left">变形率-对角线（左）</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:left">变形强度-纬纱</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:left">变形强度-经纱</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:left">变形强度-对角线（右）</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:left">变形强度-对角线（左）</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">100</td>
+</tr>
+<tr>
+<td style="text-align:left">内部阻尼</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:left">密度</td>
+<td style="text-align:center">35</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:left">摩擦数量</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">27</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/2022/06/24/220624-hardhatInitialization/">使用 Hardhat+Moralis 快速部署最简 NFT 合约</a></div></div></div></div><div class="footer"><span>©️2019-2022 Designed By&nbsp;<strong><a target="_blank" rel="noopener" href="https://github.com/random-yang">RandomYang</a></strong> Powered By&nbsp;</span><strong><a target="_blank" rel="noopener" href="https://hexo.io">hexo</a></strong></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
