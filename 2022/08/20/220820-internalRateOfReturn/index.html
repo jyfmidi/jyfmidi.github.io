@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="Clo3d 中面料材质物理属性的设置 - Evan's Blog"><meta name="theme-color" content="#6ba8a9"><title>Clo3d 中面料材质物理属性的设置 - Evan's Blog</title><style>@font-face {
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"><meta name="description" content="使用 IRR 内部收益率判断保险是不是坑 - Evan's Blog"><meta name="theme-color" content="#6ba8a9"><title>使用 IRR 内部收益率判断保险是不是坑 - Evan's Blog</title><style>@font-face {
   font-family: 'Abril Fatface';
   font-style: normal;
   font-weight: 400;
@@ -40,182 +40,104 @@ MathJax.Hub.Queue(function() {
   for(i=0; i < all.length; i += 1) {
       all[i].SourceElement().parentNode.className += ' has-jax';
   }
-});</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><meta name="generator" content="Hexo 6.2.0"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">Evan's Blog</a></h1><p></p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">Clo3d 中面料材质物理属性的设置</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">Clo3d 中面料材质物理属性的设置</a></h2><span class="post__date">2022-07-17</span><a href="/tags/Clo3d/"><span class="post__tags">#Clo3d</span></a><a href="/tags/Fashion/"><span class="post__tags">#Fashion</span></a></div></div><div class="article__content"><h2 id="面料物理属性"><a href="#面料物理属性" class="headerlink" title="面料物理属性"></a>面料物理属性</h2><p>Clo3d 作为一款服装设计软件，面料模拟自然是软件非常关键的一个核心技术。Clo3d 中，面料的渲染分为；两部分体现：<strong>材质</strong>和<strong>物理属性</strong>。</p>
-<p>前者就如其他 3d 软件或者游戏引擎中的材质属性，包括纹理贴图、法线、着色器、反射强度金属度等光照参数等等，用于体现面料的视觉效果；后者则更为关键，体现面料的质感和物理模拟，比如是硬挺的单宁布还是轻薄的雪纺。</p>
-<p><img src="physicalProperty.png" alt=""></p>
-<p>后者由一系列参数控制，作为非服装设计专业的用户，理解起来并不直观，因此本文希望通过自己设计中的经验，对这些参数都在调整什么能够有一定的总结。</p>
-<p>参数大体上分为各向异性参数和各向同性参数，各向同性参数共 3 个，作用于任意方向，包括：</p>
-<ul>
-<li>内部阻尼</li>
-<li>密度</li>
-<li>摩擦数量</li>
-</ul>
-<p>各向异性参数作用于四个方向：</p>
-<ul>
-<li>纬纱</li>
-<li>经纱</li>
-<li>对角线（右）</li>
-<li>对角线（左）</li>
-</ul>
-<p>而这些参数调整的属性包括：</p>
-<ul>
-<li><strong>强度/张力</strong>：控制面料的拉伸性；大-&gt;不易拉伸，小-&gt;容易拉开</li>
-<li><strong>弯曲强度</strong>：控制面料的硬挺度；大-&gt;面料硬挺，小-&gt;面料具有垂坠感</li>
-<li><strong>变形率</strong>：以百分比表示，体现面料收到外力后弯曲的能力；大-&gt;容易弯曲，小-&gt;不易弯曲</li>
-<li><strong>变形强度</strong>：决定面料每一个褶皱上的弯曲度；大-&gt;褶皱棱角不易弯曲，小-&gt;容易弯曲</li>
-</ul>
-<p>因此一共有 $4 \times 4 = 16$ 个各向异性参数</p>
-<h2 id="物理面料对比"><a href="#物理面料对比" class="headerlink" title="物理面料对比"></a>物理面料对比</h2><p>Clo3d 提供了丰富的预设面料，可以通过对比来进行学习。顺便再记录一些常用的材质参数：</p>
-<ul>
-<li>结构支撑性硬挺面料，一般用于裙撑这类结构。</li>
-<li>弹性乳胶衣</li>
-</ul>
+});</script><link rel="preload" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.6.0/styles/github.min.css"><link rel="preload" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface&amp;display=swap"><meta name="generator" content="Hexo 6.2.0"></head><body><div class="mask-border"></div><div class="head"><div class="head__inner"><h1><a href="/">Evan's Blog</a></h1><p></p></div></div><div class="paper-container"><div class="main"><div class="location-bar"><div class="line-1"><div class="horizontal-line" style="height: 3px"></div></div><div class="line-2"><div class="horizontal-line" style="height: 1px"></div></div><p class="text">使用 IRR 内部收益率判断保险是不是坑</p><div class="switch-button"><input class="container_toggle" type="checkbox" id="switch" name="mode"><label for="switch">Toggle</label></div><div class="line-3"><div class="horizontal-line" style="height: 1px"></div></div></div><div class="main__2-col"><article class="post-view__article"><div class="article__infomation"><div class="posts-item"><h2 class="posts-item__title"><a href="">使用 IRR 内部收益率判断保险是不是坑</a></h2><span class="post__date">2022-08-20</span><a href="/tags/Math/"><span class="post__tags">#Math</span></a><a href="/tags/Finance/"><span class="post__tags">#Finance</span></a></div></div><div class="article__content"><h2 id="学习背景"><a href="#学习背景" class="headerlink" title="学习背景"></a>学习背景</h2><p>还记得之前对金融分析一无所知，被银行打电话强行推荐了<strong>年金险</strong>，听起来似乎收益还行、又能强制储蓄，就下了一张保单。结果在犹豫期跟金融相关工作的朋友交流后发现，在金融圈年金险就是坑货代名词，被建议不要听所谓<strong>年化收益</strong>，而是自己得算一下<strong>内部收益率 IRR</strong>。</p>
+<p>当时朋友帮忙算下来真正的内部收益率只有$2.1\%$，甚至不如一些流动性稳定性都更好的债型理财，惊得我立马退保。</p>
+<p>时隔多年，市面上出现了一个新的玩意<strong>增额寿险</strong>，而疫情下经济下行又让我存款养老的心蠢蠢欲动。而这次在选择新的产品之前，决定有必要剥去宣传外壳探究一下是否真的有实际收益，比如算一下 IRR。</p>
+<h2 id="啥是-IRR"><a href="#啥是-IRR" class="headerlink" title="啥是 IRR"></a>啥是 IRR</h2><p>内部收益率是一项投资回报率的指标，需要利用其折现，使得投资<strong>净现值 NPV</strong> 为 0，因此 IRR 需要跟 NPV 结合起来理解。记 $C_0$ 为原始投资，$C_i$ 为之后每一期的现金流，IRR 就是以下非线性方程的最大根</p>
+<script type="math/tex; mode=display">
+NPV(IRR) = -C_0 + \sum_{i=1}^n \frac{C_i}{(1+IRR)^i} =0</script><h2 id="简单-IRR-计算例子"><a href="#简单-IRR-计算例子" class="headerlink" title="简单 IRR 计算例子"></a>简单 IRR 计算例子</h2><p>可以看到 IRR 计算所需要的就是我们的现金流，因此每一次计算 IRR 的流程都是先列出每一年的现金流，再进行计算。由于是非线性方程，一般使用牛顿法计算数值解。网上各种工具以及 Excel 都能做到通过现金流计算 IRR。</p>
+<p>举例说明，在 $t_0$ 时刻投入 200 元，在 $t_1$ 时刻获得 50 元，在 $t_2$ 时刻获得 100 元，在 $t_3$ 时刻获得 150 元，令该项目的 NPV 为 0，反解出 IRR，列等式计算如下</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+NPV &= -200 + \frac{50}{(1+IRR)^1} + \frac{100}{(1+IRR)^2} + \frac{150}{(1+IRR)^3} = 0\\ 
+IRR &= 19.44\%
+\end{align*}</script><p>更直观的理解可以作图表示，如果将横轴作为折现率，纵轴作为 NPV，画出净现值曲线。曲线与横轴的交点横坐标即是 IRR<br><img src="example1.png" alt=""><br>获得了 IRR，我们就能跟预期收益率进行比较，来决定是否接受这个投资项目。从图中也很直观，若内部收益率大于预期收益率，则其 $NPV &gt; 0$，此时就可以接受；而若内部收益率小于预期收益率，$NPV &lt; 0$，则就是个赔本生意，应拒绝。</p>
+<h2 id="实际保险-IRR-测算"><a href="#实际保险-IRR-测算" class="headerlink" title="实际保险 IRR 测算"></a>实际保险 IRR 测算</h2><p>那理解了 IRR 的原理之后，就着手测算一下我所看中的增额寿险实际的 IRR 收益率。准备每年定投 2w，分 10 年投入，保单每一年现金价值都是事先能够给到，于是可以对每年的 IRR 进行计算，不考虑意外死亡或者全残，因为已有配置额度远高于此的寿险，该保险仅作为强制储蓄和增益。<br>个人关心的重要的节点包括 36 岁和 60 岁，前者为程序员危机年龄，后者为自己配置的寿险保障到期年龄。根据保单演示表获得现金流信息如下</p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:left">参数名</th>
-<th style="text-align:center">棉-厚帆布</th>
-<th style="text-align:center">真丝-雪纺</th>
-<th style="text-align:center">自定义-支撑</th>
-<th style="text-align:center">西定义-乳胶</th>
+<th style="text-align:left">保单年份</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">…</th>
+<th style="text-align:center">10</th>
+<th style="text-align:center">…</th>
+<th style="text-align:center">34</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">强度-纬纱</td>
-<td style="text-align:center">46</td>
-<td style="text-align:center">18</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">32</td>
-</tr>
-<tr>
-<td style="text-align:left">强度-经纱</td>
-<td style="text-align:center">31</td>
-<td style="text-align:center">13</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">32</td>
-</tr>
-<tr>
-<td style="text-align:left">对角线张力（右）</td>
-<td style="text-align:center">29</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">32</td>
-</tr>
-<tr>
-<td style="text-align:left">对角线张力（左）</td>
-<td style="text-align:center">29</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">32</td>
-</tr>
-<tr>
-<td style="text-align:left">弯曲强度-纬纱</td>
-<td style="text-align:center">56</td>
-<td style="text-align:center">11</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">90</td>
-</tr>
-<tr>
-<td style="text-align:left">弯曲强度-经纱</td>
-<td style="text-align:center">56</td>
-<td style="text-align:center">14</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">90</td>
-</tr>
-<tr>
-<td style="text-align:left">弯曲强度-对角线（右）</td>
-<td style="text-align:center">56</td>
-<td style="text-align:center">12</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">90</td>
-</tr>
-<tr>
-<td style="text-align:left">弯曲强度-对角线（左）</td>
-<td style="text-align:center">56</td>
-<td style="text-align:center">12</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">90</td>
-</tr>
-<tr>
-<td style="text-align:left">变形率-纬纱</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:left">变形率-经纱</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:left">变形率-对角线（右）</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:left">变形率-对角线（左）</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:left">变形强度-纬纱</td>
-<td style="text-align:center">25</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">90</td>
-</tr>
-<tr>
-<td style="text-align:left">变形强度-经纱</td>
-<td style="text-align:center">25</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">90</td>
-</tr>
-<tr>
-<td style="text-align:left">变形强度-对角线（右）</td>
-<td style="text-align:center">25</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">90</td>
-</tr>
-<tr>
-<td style="text-align:left">变形强度-对角线（左）</td>
-<td style="text-align:center">25</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">90</td>
-</tr>
-<tr>
-<td style="text-align:left">内部阻尼</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:left">密度</td>
-<td style="text-align:center">35</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">25</td>
-</tr>
-<tr>
-<td style="text-align:left">摩擦数量</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">3</td>
+<td style="text-align:left">年龄</td>
 <td style="text-align:center">27</td>
-<td style="text-align:center">3</td>
+<td style="text-align:center">28</td>
+<td style="text-align:center">29</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">36</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">60</td>
+</tr>
+<tr>
+<td style="text-align:left">累计保费</td>
+<td style="text-align:center">2w</td>
+<td style="text-align:center">4w</td>
+<td style="text-align:center">6w</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">20w</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">20w</td>
+</tr>
+<tr>
+<td style="text-align:left">现金价值</td>
+<td style="text-align:center">1986</td>
+<td style="text-align:center">4680</td>
+<td style="text-align:center">9208</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">241866</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">551480</td>
 </tr>
 </tbody>
 </table>
 </div>
-</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button" href="/2022/08/20/220820-internalRateOfReturn/">使用 IRR 内部收益率判断保险是不是坑</a><a class="next-button" href="/2022/06/28/220628-vscodeVirtualMachine/">Windows 本地开发 Linux 虚拟机环境搭建</a></div></div></div></div><div class="footer"><span>©️2019-2022 Designed By&nbsp;<strong><a target="_blank" rel="noopener" href="https://github.com/random-yang">RandomYang</a></strong> Powered By&nbsp;</span><strong><a target="_blank" rel="noopener" href="https://hexo.io">hexo</a></strong></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
+<p>具体测算步骤如下：</p>
+<ol>
+<li>打开 Excel 或者 Google Docs（我用的 Google Docs），按照演示表将关键年份现金流都输入；</li>
+<li>以投入系统为负方向，将 10 年的投资输入；</li>
+<li>再以从系统提出为正方向，仅在需要提出的年份，将<strong>上一年的现金价值</strong>作为收入现金流；</li>
+<li>然后拉出一列计算总现金流；</li>
+<li>在<strong>提出当年</strong>的总现金流右侧，输入计算公式<code>=irr()</code>，并在括号内框选最上一行直到到提出现金这年的所有总现金流；</li>
+</ol>
+<p><img src="excel.png" alt=""></p>
+<p>于是可以计算出一些关键节点撤出所带来的 IRR 内部收益率：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">年龄</th>
+<th style="text-align:center">36</th>
+<th style="text-align:center">60</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">累计保费</td>
+<td style="text-align:center">20w</td>
+<td style="text-align:center">20w</td>
+</tr>
+<tr>
+<td style="text-align:left">现金价值</td>
+<td style="text-align:center">241866</td>
+<td style="text-align:center">551480</td>
+</tr>
+<tr>
+<td style="text-align:left">IRR</td>
+<td style="text-align:center">3.43%</td>
+<td style="text-align:center">3.48%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可见其实到了第 11 年，也即保费刚刚全交完，等待一年就全提出来的情况下，IRR 已经到了 $3.43\%$，相比一些银行定期，确实能够带来更高的收益而且还预防自己乱花钱，因此可以考虑入一下。</p>
+</div></article><div class="post-view__sidebar"><div class="sidebar"><div class="tocbot"><h2>Toc</h2><div class="toc__content"></div></div></div></div></div><div class="horizontal-line" style="height: 1px"></div><div class="main__bottom"><div class="pre-next"><a class="pre-button">没有更多</a><a class="next-button" href="/2022/07/17/220717-clo3dphysichalmaterial/">Clo3d 中面料材质物理属性的设置</a></div></div></div></div><div class="footer"><span>©️2019-2022 Designed By&nbsp;<strong><a target="_blank" rel="noopener" href="https://github.com/random-yang">RandomYang</a></strong> Powered By&nbsp;</span><strong><a target="_blank" rel="noopener" href="https://hexo.io">hexo</a></strong></div><div class="darkmode-mask" id="darkmode-mask"></div><div class="sidebar__button"></div></body></html>
